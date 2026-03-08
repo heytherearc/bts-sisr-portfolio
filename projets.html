@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projets | Enzo PEBE NGOMA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #050505; }
+        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .tech-tag { background: rgba(59, 130, 246, 0.1); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.2); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="text-zinc-300 pb-20">
+
+    <nav class="p-8 max-w-6xl mx-auto flex justify-between items-center">
+        <a href="index.html" class="text-white font-bold hover:text-blue-400 transition">← Retour</a>
+        <div class="flex gap-6 text-xs font-bold uppercase tracking-widest text-zinc-500">
+            <a href="index.html" class="hover:text-white transition">Accueil</a>
+            <a href="cv.html" class="hover:text-white transition">CV</a>
+            <a href="projets.html" class="text-white border-b border-blue-500">Projets</a>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-6 py-12">
+        <header class="mb-20">
+            <h1 class="text-5xl font-extrabold text-white mb-4">Réalisations Techniques</h1>
+            <p class="text-zinc-400 max-w-2xl text-lg">Déploiement d'une infrastructure virtualisée sous XCP-ng et gestion du réseau physique.</p>
+        </header>
+
+        <div class="grid grid-cols-1 gap-12">
+            <div class="glass p-8 md:p-12 rounded-[2.5rem] flex flex-col md:flex-row gap-10 group transition-all hover:border-blue-500/30">
+                
+                <div class="w-full md:w-1/2 flex-shrink-0">
+                    <div class="relative group/carousel overflow-hidden rounded-2xl border border-white/5 bg-zinc-900/50 aspect-video p-4 flex items-center justify-center">
+                        
+                        <div id="carousel" class="flex no-scrollbar overflow-x-auto snap-x snap-mandatory scroll-smooth h-full w-full gap-4">
+                            <div class="flex-none w-full h-full snap-center cursor-zoom-in flex items-center justify-center p-2 rounded-xl" onclick="openModal(this.querySelector('img').src)"><img src="pictures/xcp1.jpg" class="max-w-[90%] max-h-[90%] object-contain rounded-lg shadow-xl"></div>
+                            <div class="flex-none w-full h-full snap-center cursor-zoom-in flex items-center justify-center p-2 rounded-xl" onclick="openModal(this.querySelector('img').src)"><img src="pictures/xcp2.jpg" class="max-w-[85%] max-h-[85%] object-contain rounded-lg shadow-xl"></div>
+                            <div class="flex-none w-full h-full snap-center cursor-zoom-in flex items-center justify-center p-2 rounded-xl" onclick="openModal(this.querySelector('img').src)"><img src="pictures/xcp3.jpg" class="max-w-[85%] max-h-[85%] object-contain rounded-lg shadow-xl"></div>
+                            <div class="flex-none w-full h-full snap-center cursor-zoom-in flex items-center justify-center p-2 rounded-xl" onclick="openModal(this.querySelector('img').src)"><img src="pictures/xcp4.jpg" class="max-w-[85%] max-h-[85%] object-contain rounded-lg shadow-xl"></div>
+                            <div class="flex-none w-full h-full snap-center cursor-zoom-in flex items-center justify-center p-2 rounded-xl" onclick="openModal(this.querySelector('img').src)"><img src="pictures/xcp5.jpg" class="max-w-[85%] max-h-[85%] object-contain rounded-lg shadow-xl"></div>
+                            <div class="flex-none w-full h-full snap-center cursor-zoom-in flex items-center justify-center p-2 rounded-xl" onclick="openModal(this.querySelector('img').src)"><img src="pictures/xcp6.jpg" class="max-w-[85%] max-h-[85%] object-contain rounded-lg shadow-xl"></div>
+                            <div class="flex-none w-full h-full snap-center cursor-zoom-in flex items-center justify-center p-2 rounded-xl" onclick="openModal(this.querySelector('img').src)"><img src="pictures/xcp7.jpg" class="max-w-[85%] max-h-[85%] object-contain rounded-lg shadow-xl"></div>
+                            <div class="flex-none w-full h-full snap-center cursor-zoom-in flex items-center justify-center p-2 rounded-xl" onclick="openModal(this.querySelector('img').src)"><img src="pictures/xcp8.jpg" class="max-w-[85%] max-h-[85%] object-contain rounded-lg shadow-xl"></div>
+                        </div>
+
+                        <button onclick="scrollCarousel(-1)" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full opacity-100 md:opacity-0 md:group-hover/carousel:opacity-100 transition">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                        </button>
+                        <button onclick="scrollCarousel(1)" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full opacity-100 md:opacity-0 md:group-hover/carousel:opacity-100 transition">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </button>
+
+                        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 indicator-dots"></div>
+                    </div>
+                </div>
+
+                <div class="w-full md:w-1/2 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="text-[10px] font-mono text-blue-500 uppercase tracking-widest bg-blue-500/10 px-3 py-1 rounded-full">Dossier E4 • SISR</span>
+                        </div>
+                        <h3 class="text-3xl font-bold text-white mb-6 group-hover:text-blue-400 transition">Infrastructure Virtualisée & Brassage</h3>
+                        <p class="text-zinc-400 text-base leading-relaxed mb-8">
+                            Mise en place d'un cluster <span class="text-white font-semibold">XCP-ng</span> incluant l'installation logicielle, la configuration réseau (IP statiques, Gateway) et le <span class="text-white font-semibold">brassage physique sur baie Cisco</span>.
+                        </p>
+                    </div>
+                    <div class="flex gap-2.5 mb-8 flex-wrap">
+                        <span class="tech-tag px-4 py-1.5 rounded-lg text-xs font-bold uppercase">XCP-NG</span>
+                        <span class="tech-tag px-4 py-1.5 rounded-lg text-xs font-bold uppercase">Networking</span>
+                        <span class="tech-tag px-4 py-1.5 rounded-lg text-xs font-bold uppercase">Brassage</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="imageModal" class="fixed inset-0 z-50 hidden bg-black/95 flex items-center justify-center p-4 cursor-zoom-out" onclick="closeModal()">
+        <img id="modalImg" src="" class="max-w-full max-h-full rounded-lg shadow-2xl border border-white/10 transition-transform duration-300 scale-95">
+    </div>
+
+    <script>
+    const carousel = document.getElementById('carousel');
+    const indicatorContainer = document.querySelector('.indicator-dots');
+    const images = carousel.querySelectorAll('.flex-none');
+    let scrollInterval;
+
+    // Génération des points indicateurs
+    images.forEach((_, i) => {
+        const dot = document.createElement('div');
+        dot.className = `dot w-1.5 h-1.5 bg-white rounded-full transition ${i === 0 ? 'opacity-100' : 'opacity-40'}`;
+        indicatorContainer.appendChild(dot);
+    });
+
+    const dots = document.querySelectorAll('.dot');
+
+    carousel.addEventListener('scroll', () => {
+        const index = Math.round(carousel.scrollLeft / carousel.offsetWidth);
+        dots.forEach((dot, i) => dot.style.opacity = i === index ? '1' : '0.4');
+    });
+
+    function scrollCarousel(dir) {
+        const maxScroll = carousel.scrollWidth - carousel.offsetWidth;
+        if (dir === 1 && carousel.scrollLeft >= maxScroll - 10) {
+            carousel.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+            carousel.scrollBy({ left: dir * carousel.offsetWidth, behavior: 'smooth' });
+        }
+    }
+
+    function startAutoSlide() {
+        scrollInterval = setInterval(() => { scrollCarousel(1); }, 2500);
+    }
+
+    function stopAutoSlide() { clearInterval(scrollInterval); }
+
+    startAutoSlide();
+
+    carousel.addEventListener('mouseenter', stopAutoSlide);
+    carousel.addEventListener('mouseleave', startAutoSlide);
+    carousel.addEventListener('touchstart', stopAutoSlide);
+
+    function openModal(src) {
+        stopAutoSlide();
+        const modal = document.getElementById('imageModal');
+        const img = document.getElementById('modalImg');
+        img.src = src;
+        modal.classList.remove('hidden');
+        setTimeout(() => img.classList.replace('scale-95', 'scale-100'), 10);
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('imageModal');
+        const img = document.getElementById('modalImg');
+        img.classList.replace('scale-100', 'scale-95');
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+        startAutoSlide();
+    }
+    </script>
+</body>
+</html>
