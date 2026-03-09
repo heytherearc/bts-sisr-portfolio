@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certifications | Enzo PEBE NGOMA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #050505; color: #d4d4d8; }
+        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.4s ease; }
+        .hero-glow { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100%; height: 100vh; background: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.08) 0%, transparent 70%); pointer-events: none; }
+    </style>
+</head>
+<body class="pb-20 overflow-x-hidden">
+    <div class="hero-glow"></div>
+
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 glass px-6 py-3 rounded-full flex gap-8 text-[10px] font-bold uppercase tracking-widest text-zinc-500">
+        <a href="index.html" class="hover:text-white transition">À Propos</a>
+        <a href="bts-sio.html" class="hover:text-white transition">Le BTS SIO</a>
+        <a href="projets.html" class="hover:text-white transition">Projets</a>
+        <a href="certifications.html" class="text-white border-b border-blue-500">Certifications</a>
+        <a href="interets.html" class="hover:text-white transition">Intérêts</a>
+        <a href="contact.html" class="hover:text-white transition">Contact</a>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-6 pt-32 relative z-10">
+        <header class="mb-16">
+            <h1 class="text-5xl font-extrabold text-white mb-4 tracking-tighter">Certifications</h1>
+            <p class="text-zinc-400 text-lg">Validation des compétences et formation continue.</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="glass p-8 rounded-3xl border-l-4 border-blue-500">
+                <span class="text-[10px] font-mono text-blue-400 uppercase tracking-widest block mb-2">En cours</span>
+                <h3 class="text-xl font-bold text-white mb-2">Cisco CCNA (200-301)</h3>
+                <p class="text-zinc-400 text-sm leading-relaxed">Préparation à la certification réseaux (Routage, Switching, Sécurité réseau).</p>
+            </div>
+
+            <div class="glass p-8 rounded-3xl border-l-4 border-emerald-500">
+                <span class="text-[10px] font-mono text-emerald-400 uppercase tracking-widest block mb-2">Obtenu</span>
+                <h3 class="text-xl font-bold text-white mb-2">Certification Pix</h3>
+                <p class="text-zinc-400 text-sm leading-relaxed">Développement des compétences numériques (Sécurité, Données, Communication).</p>
+            </div>
+            
+            <div class="glass p-8 rounded-3xl border-l-4 border-zinc-500">
+                <span class="text-[10px] font-mono text-zinc-400 uppercase tracking-widest block mb-2">Formation</span>
+                <h3 class="text-xl font-bold text-white mb-2">SecNumAcadémie (ANSSI)</h3>
+                <p class="text-zinc-400 text-sm leading-relaxed">Sensibilisation complète à la cybersécurité et aux bonnes pratiques.</p>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
