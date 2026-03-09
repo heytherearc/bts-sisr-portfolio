@@ -7,149 +7,218 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #050505; }
-        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #050505; color: #d4d4d8; }
+        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.4s ease; }
         .tech-tag { background: rgba(59, 130, 246, 0.1); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.2); }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .hero-glow { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100%; height: 100vh; background: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.08) 0%, transparent 70%); pointer-events: none; z-index: 0; }
     </style>
-    <script>
-        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-    </script>
-    <script defer src="/_vercel/insights/script.js"></script>
 </head>
-<body class="text-zinc-300 pb-20">
+<body class="pb-20 overflow-x-hidden">
 
-    <nav class="p-8 max-w-6xl mx-auto flex justify-between items-center">
-        <a href="index.html" class="text-white font-bold hover:text-blue-400 transition">← Retour</a>
-        <div class="flex gap-6 text-xs font-bold uppercase tracking-widest text-zinc-500">
-            <a href="index.html" class="hover:text-white transition">Accueil</a>
-            <a href="cv.html" class="hover:text-white transition">CV</a>
-            <a href="projets.html" class="text-white border-b border-blue-500">Projets</a>
-        </div>
+    <div class="hero-glow"></div>
+
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 glass px-6 py-3 rounded-full flex gap-8 text-[10px] font-bold uppercase tracking-widest text-zinc-500">
+        <a href="index.html" class="hover:text-white transition">À Propos</a>
+        <a href="bts-sio.html" class="hover:text-white transition">Le BTS SIO</a>
+        <a href="projets.html" class="text-white border-b border-blue-500">Projets</a>
+        <a href="certifications.html" class="hover:text-white transition">Certifications</a>
+        <a href="interets.html" class="hover:text-white transition">Intérêts</a>
+        <a href="contact.html" class="hover:text-white transition">Contact</a>
     </nav>
 
-    <main class="max-w-6xl mx-auto px-6 py-12">
-        <header class="mb-20">
-            <h1 class="text-5xl font-extrabold text-white mb-4">Réalisations Techniques</h1>
-            <p class="text-zinc-400 max-w-2xl text-lg">Déploiement d'une infrastructure virtualisée sous XCP-ng et gestion du réseau physique.</p>
+    <main class="max-w-6xl mx-auto px-6 pt-32 relative z-10">
+        <header class="mb-16 text-left">
+            <h1 class="text-5xl font-extrabold text-white mb-4 tracking-tighter">Réalisations Techniques</h1>
+            <p class="text-zinc-400 max-w-2xl text-lg">Infrastructure virtualisée et gestion réseau.</p>
         </header>
 
         <div class="grid grid-cols-1 gap-12">
-            <div class="glass p-8 md:p-12 rounded-[2.5rem] flex flex-col md:flex-row gap-10 group transition-all hover:border-blue-500/30">
-                
-                <div class="w-full md:w-1/2 flex-shrink-0">
-                    <div class="relative group/carousel overflow-hidden rounded-2xl border border-white/5 bg-zinc-900/50 aspect-video p-4 flex items-center justify-center">
-                        
-                        <div id="carousel" class="flex no-scrollbar overflow-x-auto snap-x snap-mandatory scroll-smooth h-full w-full gap-4">
-                            <div class="flex-none w-full h-full snap-center cursor-zoom-in flex items-center justify-center p-2 rounded-xl" onclick="openModal(this.querySelector('img').src)"><img src="pictures/xcp1.jpg" class="max-w-[90%] max-h-[90%] object-contain rounded-lg shadow-xl"></div>
-                            <div class="flex-none w-full h-full snap-center cursor-zoom-in flex items-center justify-center p-2 rounded-xl" onclick="openModal(this.querySelector('img').src)"><img src="pictures/xcp2.jpg" class="max-w-[85%] max-h-[85%] object-contain rounded-lg shadow-xl"></div>
-                            <div class="flex-none w-full h-full snap-center cursor-zoom-in flex items-center justify-center p-2 rounded-xl" onclick="openModal(this.querySelector('img').src)"><img src="pictures/xcp3.jpg" class="max-w-[85%] max-h-[85%] object-contain rounded-lg shadow-xl"></div>
-                            <div class="flex-none w-full h-full snap-center cursor-zoom-in flex items-center justify-center p-2 rounded-xl" onclick="openModal(this.querySelector('img').src)"><img src="pictures/xcp4.jpg" class="max-w-[85%] max-h-[85%] object-contain rounded-lg shadow-xl"></div>
-                            <div class="flex-none w-full h-full snap-center cursor-zoom-in flex items-center justify-center p-2 rounded-xl" onclick="openModal(this.querySelector('img').src)"><img src="pictures/xcp5.jpg" class="max-w-[85%] max-h-[85%] object-contain rounded-lg shadow-xl"></div>
-                            <div class="flex-none w-full h-full snap-center cursor-zoom-in flex items-center justify-center p-2 rounded-xl" onclick="openModal(this.querySelector('img').src)"><img src="pictures/xcp6.jpg" class="max-w-[85%] max-h-[85%] object-contain rounded-lg shadow-xl"></div>
-                            <div class="flex-none w-full h-full snap-center cursor-zoom-in flex items-center justify-center p-2 rounded-xl" onclick="openModal(this.querySelector('img').src)"><img src="pictures/xcp7.jpg" class="max-w-[85%] max-h-[85%] object-contain rounded-lg shadow-xl"></div>
-                            <div class="flex-none w-full h-full snap-center cursor-zoom-in flex items-center justify-center p-2 rounded-xl" onclick="openModal(this.querySelector('img').src)"><img src="pictures/xcp8.jpg" class="max-w-[85%] max-h-[85%] object-contain rounded-lg shadow-xl"></div>
-                        </div>
-
-                        <button onclick="scrollCarousel(-1)" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full opacity-100 md:opacity-0 md:group-hover/carousel:opacity-100 transition">
+            <div class="glass p-8 md:p-12 rounded-[3rem] flex flex-col lg:flex-row gap-10 group transition-all hover:border-blue-500/30">
+                <div class="w-full lg:w-1/2 flex-shrink-0">
+                    <div class="relative group/carousel overflow-hidden rounded-[2rem] border border-white/5 bg-zinc-900/50 aspect-video p-4 flex items-center justify-center">
+                        <button onclick="scrollCarousel(-1, event)" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/60 hover:bg-black/90 text-white p-3 rounded-full opacity-0 group-hover/carousel:opacity-100 transition-all shadow-xl backdrop-blur-md hidden md:block">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                         </button>
-                        <button onclick="scrollCarousel(1)" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full opacity-100 md:opacity-0 md:group-hover/carousel:opacity-100 transition">
+                        <button onclick="scrollCarousel(1, event)" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/60 hover:bg-black/90 text-white p-3 rounded-full opacity-0 group-hover/carousel:opacity-100 transition-all shadow-xl backdrop-blur-md hidden md:block">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                         </button>
 
-                        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 indicator-dots"></div>
+                        <div id="carousel" class="flex no-scrollbar overflow-x-hidden snap-x snap-mandatory scroll-smooth h-full w-full gap-4 cursor-grab active:cursor-grabbing">
+                            <div class="flex-none w-full h-full snap-center flex items-center justify-center p-2"><img src="pictures/xcp1.jpg" class="max-w-full max-h-full object-contain rounded-lg pointer-events-none select-none"></div>
+                            <div class="flex-none w-full h-full snap-center flex items-center justify-center p-2"><img src="pictures/xcp2.jpg" class="max-w-full max-h-full object-contain rounded-lg pointer-events-none select-none"></div>
+                            <div class="flex-none w-full h-full snap-center flex items-center justify-center p-2"><img src="pictures/xcp3.jpg" class="max-w-full max-h-full object-contain rounded-lg pointer-events-none select-none"></div>
+                            <div class="flex-none w-full h-full snap-center flex items-center justify-center p-2"><img src="pictures/xcp4.jpg" class="max-w-full max-h-full object-contain rounded-lg pointer-events-none select-none"></div>
+                            <div class="flex-none w-full h-full snap-center flex items-center justify-center p-2"><img src="pictures/xcp5.jpg" class="max-w-full max-h-full object-contain rounded-lg pointer-events-none select-none"></div>
+                            <div class="flex-none w-full h-full snap-center flex items-center justify-center p-2"><img src="pictures/xcp6.jpg" class="max-w-full max-h-full object-contain rounded-lg pointer-events-none select-none"></div>
+                            <div class="flex-none w-full h-full snap-center flex items-center justify-center p-2"><img src="pictures/xcp7.jpg" class="max-w-full max-h-full object-contain rounded-lg pointer-events-none select-none"></div>
+                            <div class="flex-none w-full h-full snap-center flex items-center justify-center p-2"><img src="pictures/xcp8.jpg" class="max-w-full max-h-full object-contain rounded-lg pointer-events-none select-none"></div>
+                        </div>
+                        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 indicator-dots z-10"></div>
                     </div>
                 </div>
 
-                <div class="w-full md:w-1/2 flex flex-col justify-between">
+                <div class="w-full lg:w-1/2 flex flex-col justify-between">
                     <div>
-                        <div class="flex justify-between items-start mb-6">
-                            <span class="text-[10px] font-mono text-blue-500 uppercase tracking-widest bg-blue-500/10 px-3 py-1 rounded-full">Dossier E4 • SISR</span>
-                        </div>
-                        <h3 class="text-3xl font-bold text-white mb-6 group-hover:text-blue-400 transition">Infrastructure Virtualisée & Brassage</h3>
-                        <p class="text-zinc-400 text-base leading-relaxed mb-8">
-                            Mise en place d'un cluster <span class="text-white font-semibold">XCP-ng</span> incluant l'installation logicielle, la configuration réseau (IP statiques, Gateway) et le <span class="text-white font-semibold">brassage physique sur baie Cisco</span>.
-                        </p>
+                        <span class="text-[10px] font-mono text-blue-500 uppercase tracking-widest bg-blue-500/10 px-4 py-1.5 rounded-full border border-blue-500/20 mb-6 inline-block">Projet SISR</span>
+                        <h3 class="text-3xl font-bold text-white mb-6 tracking-tight">Infrastructure XCP-ng</h3>
+                        <p class="text-zinc-400 text-base leading-relaxed mb-8 text-left">Mise en place d'un cluster incluant configuration réseau et brassage physique sur baie Cisco.</p>
                     </div>
-                    <div class="flex gap-2.5 mb-8 flex-wrap">
-                        <span class="tech-tag px-4 py-1.5 rounded-lg text-xs font-bold uppercase">XCP-NG</span>
-                        <span class="tech-tag px-4 py-1.5 rounded-lg text-xs font-bold uppercase">Networking</span>
-                        <span class="tech-tag px-4 py-1.5 rounded-lg text-xs font-bold uppercase">Brassage</span>
+                    <div class="flex gap-3 flex-wrap">
+                        <span class="tech-tag px-4 py-2 rounded-xl text-[10px] font-bold uppercase tracking-widest">XCP-NG</span>
+                        <span class="tech-tag px-4 py-2 rounded-xl text-[10px] font-bold uppercase tracking-widest">Cisco</span>
+                        <span class="tech-tag px-4 py-2 rounded-xl text-[10px] font-bold uppercase tracking-widest">Debian</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative group">
+                <div class="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
+                    <div class="px-8 py-3 bg-white/5 backdrop-blur-md border border-white/10 rounded-full">
+                        <span class="text-white font-bold tracking-[0.3em] uppercase text-xs animate-pulse">Coming Soon</span>
+                    </div>
+                </div>
+
+                <div class="glass p-8 md:p-12 rounded-[3rem] flex flex-col lg:flex-row gap-10 opacity-40 blur-[2px] grayscale transition-all duration-700">
+                    <div class="w-full lg:w-1/2 aspect-video bg-zinc-900/50 rounded-[2rem] border border-white/5 flex items-center justify-center">
+                        <svg class="w-12 h-12 text-zinc-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <div class="w-full lg:w-1/2 flex flex-col justify-center">
+                        <div class="h-4 w-24 bg-zinc-800 rounded-full mb-6"></div>
+                        <div class="h-10 w-64 bg-zinc-800 rounded-xl mb-6"></div>
+                        <div class="h-20 w-full bg-zinc-800/50 rounded-2xl"></div>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <div id="imageModal" class="fixed inset-0 z-50 hidden bg-black/95 flex items-center justify-center p-4 cursor-zoom-out" onclick="closeModal()">
-        <img id="modalImg" src="" class="max-w-full max-h-full rounded-lg shadow-2xl border border-white/10 transition-transform duration-300 scale-95">
+    <div id="imageModal" class="fixed inset-0 z-[999] hidden bg-black/95 flex items-center justify-center p-4" onclick="closeModal()">
+        <button onclick="modalPrev(event)" class="absolute left-4 md:left-10 z-[1000] bg-white/10 text-white p-4 rounded-full border border-white/10 transition-colors hover:bg-white/20"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg></button>
+        <img id="modalImg" src="" class="max-w-full max-h-[85vh] rounded-lg border border-white/10 transition-all duration-300 scale-95 object-contain select-none pointer-events-none">
+        <button onclick="modalNext(event)" class="absolute right-4 md:right-10 z-[1000] bg-white/10 text-white p-4 rounded-full border border-white/10 transition-colors hover:bg-white/20"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
+        <button onclick="closeModal()" class="absolute top-8 right-8 z-[1000] text-white/50 hover:text-white"><svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
     </div>
 
     <script>
+    // --- 1. SETUP VARIABLES ---
     const carousel = document.getElementById('carousel');
     const indicatorContainer = document.querySelector('.indicator-dots');
-    const images = carousel.querySelectorAll('.flex-none');
-    let scrollInterval;
+    const imagesArray = Array.from(carousel.querySelectorAll('img')).map(img => img.src);
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImg');
+    
+    let isDown = false, isDragging = false, startX, scrollLeft;
+    let currentImageIndex = 0;
+    let autoSlideInterval;
 
-    // Génération des points indicateurs
-    images.forEach((_, i) => {
+    // --- 2. INDICATEURS & AUTO-SLIDE (2.5s) ---
+    imagesArray.forEach((_, i) => {
         const dot = document.createElement('div');
-        dot.className = `dot w-1.5 h-1.5 bg-white rounded-full transition ${i === 0 ? 'opacity-100' : 'opacity-40'}`;
+        dot.className = `dot w-1.5 h-1.5 bg-white rounded-full transition ${i === 0 ? 'opacity-100' : 'opacity-20'}`;
         indicatorContainer.appendChild(dot);
     });
-
     const dots = document.querySelectorAll('.dot');
-
+    
     carousel.addEventListener('scroll', () => {
         const index = Math.round(carousel.scrollLeft / carousel.offsetWidth);
-        dots.forEach((dot, i) => dot.style.opacity = i === index ? '1' : '0.4');
+        dots.forEach((dot, i) => dot.style.opacity = i === index ? '1' : '0.2');
     });
 
-    function scrollCarousel(dir) {
-        const maxScroll = carousel.scrollWidth - carousel.offsetWidth;
-        if (dir === 1 && carousel.scrollLeft >= maxScroll - 10) {
-            carousel.scrollTo({ left: 0, behavior: 'smooth' });
-        } else {
-            carousel.scrollBy({ left: dir * carousel.offsetWidth, behavior: 'smooth' });
-        }
-    }
-
     function startAutoSlide() {
-        scrollInterval = setInterval(() => { scrollCarousel(1); }, 2500);
+        stopAutoSlide();
+        autoSlideInterval = setInterval(() => {
+            const maxScroll = carousel.scrollWidth - carousel.offsetWidth;
+            if (carousel.scrollLeft >= maxScroll - 10) carousel.scrollTo({ left: 0, behavior: 'smooth' });
+            else carousel.scrollBy({ left: carousel.offsetWidth, behavior: 'smooth' });
+        }, 2500);
     }
-
-    function stopAutoSlide() { clearInterval(scrollInterval); }
+    function stopAutoSlide() { clearInterval(autoSlideInterval); }
 
     startAutoSlide();
-
     carousel.addEventListener('mouseenter', stopAutoSlide);
     carousel.addEventListener('mouseleave', startAutoSlide);
-    carousel.addEventListener('touchstart', stopAutoSlide);
+    carousel.addEventListener('touchstart', stopAutoSlide, {passive: true});
+    carousel.addEventListener('touchend', startAutoSlide);
 
+    // --- 3. DESKTOP CAROUSEL ARROWS ---
+    window.scrollCarousel = function(dir, e) {
+        if(e) e.stopPropagation();
+        stopAutoSlide();
+        const maxScroll = carousel.scrollWidth - carousel.offsetWidth;
+        let newScrollLeft = carousel.scrollLeft + (dir * carousel.offsetWidth);
+        
+        if (dir === 1 && carousel.scrollLeft >= maxScroll - 10) newScrollLeft = 0;
+        else if (dir === -1 && carousel.scrollLeft <= 10) newScrollLeft = maxScroll;
+        
+        carousel.scrollTo({ left: newScrollLeft, behavior: 'smooth' });
+    };
+
+    // --- 4. NORMAL SWIPE (Drag souris) & SMART CLICK ---
+    carousel.addEventListener('mousedown', (e) => {
+        isDown = true; isDragging = false;
+        startX = e.pageX - carousel.offsetLeft;
+        scrollLeft = carousel.scrollLeft;
+        stopAutoSlide();
+    });
+
+    carousel.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - carousel.offsetLeft;
+        const walk = (x - startX) * 2;
+        if (Math.abs(walk) > 5) isDragging = true;
+        carousel.scrollLeft = scrollLeft - walk;
+    });
+
+    carousel.addEventListener('mouseup', () => {
+        isDown = false;
+        if (!isDragging) {
+            const index = Math.round(carousel.scrollLeft / carousel.offsetWidth);
+            openModal(imagesArray[index]);
+        }
+        startAutoSlide();
+    });
+
+    carousel.addEventListener('mouseleave', () => { isDown = false; });
+
+    // --- 5. MODAL & ZOOMED SWIPE ---
     function openModal(src) {
         stopAutoSlide();
-        const modal = document.getElementById('imageModal');
-        const img = document.getElementById('modalImg');
-        img.src = src;
+        currentImageIndex = imagesArray.indexOf(src);
+        updateModal();
         modal.classList.remove('hidden');
-        setTimeout(() => img.classList.replace('scale-95', 'scale-100'), 10);
         document.body.style.overflow = 'hidden';
     }
 
-    function closeModal() {
-        const modal = document.getElementById('imageModal');
-        const img = document.getElementById('modalImg');
-        img.classList.replace('scale-100', 'scale-95');
-        modal.classList.add('hidden');
-        document.body.style.overflow = 'auto';
-        startAutoSlide();
+    function updateModal() {
+        modalImg.src = imagesArray[currentImageIndex];
+        modalImg.style.opacity = '0';
+        setTimeout(() => { modalImg.style.opacity = '1'; }, 50);
     }
+
+    window.modalNext = function(e) { if(e) e.stopPropagation(); currentImageIndex = (currentImageIndex + 1) % imagesArray.length; updateModal(); }
+    window.modalPrev = function(e) { if(e) e.stopPropagation(); currentImageIndex = (currentImageIndex - 1 + imagesArray.length) % imagesArray.length; updateModal(); }
+    window.closeModal = function() { modal.classList.add('hidden'); document.body.style.overflow = 'auto'; startAutoSlide(); }
+
+    // Swipe tactile dans la modale
+    let touchStartX = 0;
+    modal.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, {passive: true});
+    modal.addEventListener('touchend', e => {
+        let touchEndX = e.changedTouches[0].screenX;
+        if (touchEndX < touchStartX - 40) modalNext();
+        if (touchEndX > touchStartX + 40) modalPrev();
+    });
+
+    // Clavier
+    document.addEventListener('keydown', (e) => {
+        if (!modal.classList.contains('hidden')) {
+            if (e.key === "ArrowRight") modalNext();
+            if (e.key === "ArrowLeft") modalPrev();
+            if (e.key === "Escape") closeModal();
+        }
+    });
     </script>
-    <script>
-        window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
-    </script>
-    <script defer src="/_vercel/speed-insights/script.js"></script>
 </body>
 </html>
