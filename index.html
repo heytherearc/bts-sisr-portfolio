@@ -47,6 +47,21 @@
             40% { transform: translateY(-10px) translateX(-50%); }
             60% { transform: translateY(-5px) translateX(-50%); }
         }
+        /* La page est invisible par défaut pour permettre le Fade In */
+    body { 
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    }
+
+/* Classe pour l'apparition (Fade In) */
+    body.fade-in { 
+    opacity: 1; 
+    }   
+
+/* Classe pour la disparition (Fade Out) */
+    .fade-out { 
+    opacity: 0 !important; 
+    }
     </style>
 </head>
 <body class="selection:bg-blue-500/30 overflow-x-hidden">
@@ -54,10 +69,10 @@
     <div class="hero-glow"></div>
 
     <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 glass px-6 py-3 rounded-full flex gap-8 text-[10px] font-bold uppercase tracking-widest">
-        <a href="index.html" class="hover:text-white transition">Accueil
+        <a href="index.html" class="hover:text-white transition">Accueil</a>
         <a href="bts-sio.html" class="hover:text-white transition">Le BTS SIO</a>
         <a href="cv.html" class="hover:text-white transition">CV</a>
-        <a href="projets.html" class="hover:text-white transition"> Projets
+        <a href="projets.html" class="hover:text-white transition"> Projets</a>
         <a href="certifications.html" class="hover:text-white transition">Certifications</a>
         <a href="veille.html" class="hover:text-white transition">Veille technologique</a>
         <a href="interets.html" class="hover:text-white transition">Intérêts</a>
@@ -94,8 +109,39 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7"></path>
         </svg>
     </div>
-</a>
     </section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // 1. Animation d'entrée : on ajoute la classe après le chargement du DOM
+        setTimeout(() => {
+            document.body.classList.add("fade-in");
+        }, 100);
+
+        // 2. Animation de sortie : on intercepte les clics sur les liens internes
+        const links = document.querySelectorAll('nav a, a.group');
+
+        links.forEach(link => {
+            link.addEventListener("click", e => {
+                // On vérifie que c'est bien un lien vers une autre page locale (.html)
+                if (link.hostname === window.location.hostname && link.href.includes('.html')) {
+                    e.preventDefault(); // On bloque le changement de page immédiat
+                    const target = link.href;
+
+                    // On lance le fondu de sortie
+                    document.body.classList.add("fade-out");
+
+                    // On attend la fin de l'anim (500ms) pour changer de page
+                    setTimeout(() => {
+                        window.location.href = target;
+                    }, 500);
+                }
+            });
+        });
+    });
+</script>
+
+
 
 </body>
 </html>
