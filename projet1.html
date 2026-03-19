@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projets | Enzo PEBE NGOMA</title>
+    <title>Projet GSB | Enzo PEBE NGOMA</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
@@ -25,170 +25,118 @@
             border: 1px solid rgba(255, 255, 255, 0.08); 
             transition: all 0.4s ease; 
         }
-        
-        .tech-tag { background: rgba(59, 130, 246, 0.1); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.2); }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        .hero-glow { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100%; height: 100vh; background: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.08) 0%, transparent 70%); pointer-events: none; z-index: 0; }
+
+        .hero-glow { 
+            position: absolute; top: 0; left: 50%; transform: translateX(-50%); 
+            width: 100%; height: 100vh; 
+            background: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.08) 0%, transparent 70%); 
+            pointer-events: none; 
+        }
+
+        .tech-badge {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 10px;
+            font-weight: 700;
+            color: #60a5fa;
+            text-transform: uppercase;
+        }
     </style>
 </head>
-<body class="pb-20 overflow-x-hidden">
+
+<body class="selection:bg-blue-500/30 overflow-x-hidden">
 
     <div class="hero-glow"></div>
 
-    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 glass px-6 py-3 rounded-full flex gap-8 text-[10px] font-bold uppercase tracking-widest">
-        <a href="index.html" class="hover:text-white transition">Accueil</a>
-        <a href="bts-sio.html" class="hover:text-white transition">Le BTS SIO</a>
-        <a href="cv.html" class="hover:text-white transition">CV</a>
-        <a href="projets.html" class="text-white border-b border-blue-500">Projets</a>
-        <a href="certifications.html" class="hover:text-white transition">Certifications</a>
-        <a href="veille.html" class="hover:text-white transition">Veille technologique</a>
-        <a href="interets.html" class="hover:text-white transition">Intérêts</a>
-        <a href="contact.html" class="hover:text-white transition">Contact</a>
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 glass px-6 py-3 rounded-full flex gap-6 text-[9px] font-bold uppercase tracking-widest whitespace-nowrap">
+        <a href="index.html" class="hover:text-white transition text-zinc-500">Accueil</a>
+        <a href="bts-sio.html" class="hover:text-white transition text-zinc-500">BTS SIO</a>
+        <a href="cv.html" class="hover:text-white transition text-zinc-500">CV</a>
+        <a href="projets.html" class="hover:text-white transition text-zinc-500">Projets</a>
+        <a href="certifications.html" class="hover:text-white transition text-zinc-500">Certifications</a>
+        <a href="veille.html" class="hover:text-white transition text-zinc-500">Veille</a>
+        <a href="interets.html" class="hover:text-white transition text-zinc-500">Intérêts</a>
+        <a href="contact.html" class="hover:text-white transition text-zinc-500">Contact</a>
     </nav>
 
-    <main class="max-w-6xl mx-auto px-6 pt-32 relative z-10">
-        <header class="mb-16 text-left">
-            <h1 class="text-5xl font-extrabold text-white mb-4 tracking-tighter">Réalisations Techniques</h1>
+    <main class="max-w-5xl mx-auto px-6 pt-32 relative z-10 pb-20">
+        
+        <header class="mb-16">
+            <div class="flex gap-2 mb-6">
+                <span class="tech-badge">SISR</span>
+                <span class="tech-badge">Infrastructure</span>
+            </div>
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tighter uppercase">Infrastructure GSB</h1>
+            <p class="text-zinc-500 text-lg max-w-2xl">
+                Déploiement complet d'un environnement virtualisé sécurisé incluant la gestion d'annuaire Active Directory et la segmentation réseau.
+            </p>
         </header>
 
-        <div class="grid grid-cols-1 gap-12">
-            <div class="glass p-8 md:p-12 rounded-[3rem] flex flex-col lg:flex-row gap-10 group transition-all hover:border-blue-500/30 cursor-pointer" 
-                 onclick="triggerTransition('projet1.html')">
-                
-                <div class="w-full lg:w-1/2 flex-shrink-0" onclick="event.stopPropagation()">
-                    <div class="relative group/carousel overflow-hidden rounded-[2rem] border border-white/5 bg-zinc-900/50 aspect-video p-4 flex items-center justify-center">
-                        <button onclick="scrollCarousel(-1, event)" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/60 hover:bg-black/90 text-white p-3 rounded-full opacity-0 group-hover/carousel:opacity-100 transition-all shadow-xl backdrop-blur-md hidden md:block">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                        </button>
-                        <button onclick="scrollCarousel(1, event)" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/60 hover:bg-black/90 text-white p-3 rounded-full opacity-0 group-hover/carousel:opacity-100 transition-all shadow-xl backdrop-blur-md hidden md:block">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                        </button>
+        <section class="grid md:grid-cols-2 gap-8 mb-12">
+            <article class="glass p-10 rounded-[3rem]">
+                <h3 class="text-2xl font-black text-white uppercase mb-6 underline decoration-blue-500 decoration-4 underline-offset-8">Mise en place</h3>
+                <p class="text-zinc-500 text-sm leading-relaxed mb-6">
+                    Le projet débute par le brassage physique de l'hyperviseur Bare Metal vers la baie de brassage. L'installation de XCP-ng permet la création d'un socle de virtualisation robuste, piloté à distance via Xen Orchestra (XOA).
+                </p>
+                <ul class="text-zinc-400 text-xs space-y-2">
+                    <li>• Hyperviseur : XCP-ng (Xen)</li>
+                    <li>• Management : Xen Orchestra (XOA)</li>
+                    <li>• Réseau : Segmentation VLAN (802.1Q)</li>
+                </ul>
+            </article>
 
-                        <div id="carousel" class="flex no-scrollbar overflow-x-hidden snap-x snap-mandatory scroll-smooth h-full w-full gap-4 cursor-grab active:cursor-grabbing">
-                            <div class="flex-none w-full h-full snap-center flex items-center justify-center p-2"><img src="pictures/xcp1.jpg" class="max-w-full max-h-full object-contain rounded-lg pointer-events-none select-none"></div>
-                            <div class="flex-none w-full h-full snap-center flex items-center justify-center p-2"><img src="pictures/xcp2.jpg" class="max-w-full max-h-full object-contain rounded-lg pointer-events-none select-none"></div>
-                            <div class="flex-none w-full h-full snap-center flex items-center justify-center p-2"><img src="pictures/xcp3.jpg" class="max-w-full max-h-full object-contain rounded-lg pointer-events-none select-none"></div>
-                            <div class="flex-none w-full h-full snap-center flex items-center justify-center p-2"><img src="pictures/xcp4.jpg" class="max-w-full max-h-full object-contain rounded-lg pointer-events-none select-none"></div>
-                            <div class="flex-none w-full h-full snap-center flex items-center justify-center p-2"><img src="pictures/xcp5.jpg" class="max-w-full max-h-full object-contain rounded-lg pointer-events-none select-none"></div>
-                            <div class="flex-none w-full h-full snap-center flex items-center justify-center p-2"><img src="pictures/xcp6.jpg" class="max-w-full max-h-full object-contain rounded-lg pointer-events-none select-none"></div>
-                            <div class="flex-none w-full h-full snap-center flex items-center justify-center p-2"><img src="pictures/xcp7.jpg" class="max-w-full max-h-full object-contain rounded-lg pointer-events-none select-none"></div>
-                            <div class="flex-none w-full h-full snap-center flex items-center justify-center p-2"><img src="pictures/xcp8.jpg" class="max-w-full max-h-full object-contain rounded-lg pointer-events-none select-none"></div>
-                        </div>
-                        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 indicator-dots z-10"></div>
+            <article class="glass p-10 rounded-[3rem]">
+                <h3 class="text-2xl font-black text-white uppercase mb-6 underline decoration-blue-500 decoration-4 underline-offset-8">Identité & DNS</h3>
+                <p class="text-zinc-500 text-sm leading-relaxed">
+                    Configuration du domaine <strong>poled.local</strong> avec deux contrôleurs de domaine (DC) pour assurer la redondance des services DNS, DHCP et AD DS.
+                </p>
+                <div class="mt-8 space-y-3">
+                    <div class="flex justify-between items-center bg-white/5 p-3 rounded-xl border border-white/5">
+                        <span class="text-[10px] font-bold uppercase">DC01 (mon pote)</span>
+                        <span class="text-[10px] font-mono text-blue-400">172.16.0.30</span>
+                    </div>
+                    <div class="flex justify-between items-center bg-white/5 p-3 rounded-xl border border-white/5">
+                        <span class="text-[10px] font-bold uppercase">DC02 (Enzo)</span>
+                        <span class="text-[10px] font-mono text-blue-400">172.16.0.32</span>
                     </div>
                 </div>
+            </article>
+        </section>
 
-                <div class="w-full lg:w-1/2 flex flex-col justify-between">
-                    <div>
-                        <span class="text-[10px] font-mono text-blue-500 uppercase tracking-widest bg-blue-500/10 px-4 py-1.5 rounded-full border border-blue-500/20 mb-6 inline-block">Projet SISR</span>
-                        <h3 class="text-3xl font-bold text-white mb-6 tracking-tight uppercase group-hover:text-blue-400 transition">Infrastructure GSB</h3>
-                        <p class="text-zinc-400 text-base leading-relaxed mb-8 text-left">Déploiement d'une infrastructure virtualisée XCP-ng pour GSB, incluant le brassage physique, la segmentation par VLAN et Active Directory.</p>
-                    </div>
-                    <div class="flex gap-3 flex-wrap">
-                        <span class="tech-tag px-4 py-2 rounded-xl text-[10px] font-bold uppercase tracking-widest">XCP-NG</span>
-                        <span class="tech-tag px-4 py-2 rounded-xl text-[10px] font-bold uppercase tracking-widest">VLAN</span>
-                        <span class="tech-tag px-4 py-2 rounded-xl text-[10px] font-bold uppercase tracking-widest">Debian</span>
-                    </div>
+        <section class="glass p-10 rounded-[3rem] mb-12">
+            <h3 class="text-2xl font-black text-white uppercase mb-8 text-center">Réalisation Technique</h3>
+            <div class="grid md:grid-cols-3 gap-8 text-center">
+                <div>
+                    <h4 class="text-white font-bold uppercase text-[10px] mb-4 tracking-widest text-blue-400">Active Directory</h4>
+                    <p class="text-zinc-600 text-xs leading-relaxed">Déploiement des rôles AD DS via Server Manager. Création de la forêt poled.local et gestion des objets du parc informatique.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold uppercase text-[10px] mb-4 tracking-widest text-purple-400">Réseau GSB</h4>
+                    <p class="text-zinc-600 text-xs leading-relaxed">Respect des règles de nommage et d'adressage GSB. Configuration des scopes DHCP et des zones de recherche inversées DNS.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold uppercase text-[10px] mb-4 tracking-widest text-emerald-400">Client Windows</h4>
+                    <p class="text-zinc-600 text-xs leading-relaxed">Installation d'un poste client Windows 10/11 pour valider la jonction au domaine et l'application des politiques réseau.</p>
                 </div>
             </div>
+        </section>
 
-            <div class="glass p-10 rounded-[3rem] opacity-30 grayscale border-dashed border-2 border-white/10">
-                <h3 class="text-2xl font-bold text-white uppercase italic tracking-tighter">Projet Suivant en cours...</h3>
-            </div>
-        </div>
     </main>
 
-    <div id="imageModal" class="fixed inset-0 z-[999] hidden bg-black/95 flex items-center justify-center p-4" onclick="closeModal()">
-        <button onclick="modalPrev(event)" class="absolute left-4 md:left-10 z-[1000] bg-white/10 text-white p-4 rounded-full border border-white/10 transition-colors hover:bg-white/20"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg></button>
-        <img id="modalImg" src="" class="max-w-full max-h-[85vh] rounded-lg border border-white/10 transition-all duration-300 scale-95 object-contain select-none pointer-events-none">
-        <button onclick="modalNext(event)" class="absolute right-4 md:right-10 z-[1000] bg-white/10 text-white p-4 rounded-full border border-white/10 transition-colors hover:bg-white/20"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
-        <button onclick="closeModal()" class="absolute top-8 right-8 z-[1000] text-white/50 hover:text-white"><svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
-    </div>
-
     <script>
-        // --- 1. FONCTIONS DE TRANSITION ---
-        function triggerTransition(url) {
-            document.body.classList.add("fade-out");
-            setTimeout(() => { window.location.href = url; }, 500);
-        }
-
         document.addEventListener("DOMContentLoaded", () => {
-            // Fondu d'entrée
             setTimeout(() => { document.body.classList.add('fade-in'); }, 50);
-
-            // Gestion de la Nav
-            const navLinks = document.querySelectorAll('nav a');
-            navLinks.forEach(link => {
-                link.addEventListener("click", e => {
-                    if (link.hostname === window.location.hostname && link.href.includes('.html')) {
+            const links = document.querySelectorAll('nav a, a');
+            links.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href && href.includes('.html') && !href.startsWith('http')) {
+                    link.addEventListener("click", e => {
                         e.preventDefault();
-                        triggerTransition(link.href);
-                    }
-                });
-            });
-
-            // --- 2. CONFIGURATION DU CARROUSEL ---
-            const carousel = document.getElementById('carousel');
-            const indicatorContainer = document.querySelector('.indicator-dots');
-            const imagesArray = Array.from(carousel.querySelectorAll('img')).map(img => img.src);
-            const modal = document.getElementById('imageModal');
-            const modalImg = document.getElementById('modalImg');
-            
-            let isDown = false, isDragging = false, startX, scrollLeft;
-            let currentImageIndex = 0;
-
-            imagesArray.forEach((_, i) => {
-                const dot = document.createElement('div');
-                dot.className = `dot w-1.5 h-1.5 bg-white rounded-full transition ${i === 0 ? 'opacity-100' : 'opacity-20'}`;
-                indicatorContainer.appendChild(dot);
-            });
-            const dots = document.querySelectorAll('.dot');
-            
-            carousel.addEventListener('scroll', () => {
-                const index = Math.round(carousel.scrollLeft / carousel.offsetWidth);
-                dots.forEach((dot, i) => dot.style.opacity = i === index ? '1' : '0.2');
-            });
-
-            window.scrollCarousel = function(dir, e) {
-                if(e) e.stopPropagation();
-                const maxScroll = carousel.scrollWidth - carousel.offsetWidth;
-                let newScrollLeft = carousel.scrollLeft + (dir * carousel.offsetWidth);
-                if (dir === 1 && carousel.scrollLeft >= maxScroll - 10) newScrollLeft = 0;
-                else if (dir === -1 && carousel.scrollLeft <= 10) newScrollLeft = maxScroll;
-                carousel.scrollTo({ left: newScrollLeft, behavior: 'smooth' });
-            };
-
-            // Modal & Drag
-            window.openModal = function(src) {
-                currentImageIndex = imagesArray.indexOf(src);
-                updateModal();
-                modal.classList.remove('hidden');
-                document.body.style.overflow = 'hidden';
-            }
-            window.updateModal = function() {
-                modalImg.src = imagesArray[currentImageIndex];
-            }
-            window.modalNext = function(e) { if(e) e.stopPropagation(); currentImageIndex = (currentImageIndex + 1) % imagesArray.length; updateModal(); }
-            window.modalPrev = function(e) { if(e) e.stopPropagation(); currentImageIndex = (currentImageIndex - 1 + imagesArray.length) % imagesArray.length; updateModal(); }
-            window.closeModal = function() { modal.classList.add('hidden'); document.body.style.overflow = 'auto'; }
-
-            carousel.addEventListener('mousedown', (e) => {
-                isDown = true; isDragging = false;
-                startX = e.pageX - carousel.offsetLeft;
-                scrollLeft = carousel.scrollLeft;
-            });
-            carousel.addEventListener('mousemove', (e) => {
-                if (!isDown) return;
-                const walk = (e.pageX - carousel.offsetLeft - startX) * 2;
-                if (Math.abs(walk) > 5) isDragging = true;
-                carousel.scrollLeft = scrollLeft - walk;
-            });
-            carousel.addEventListener('mouseup', () => {
-                isDown = false;
-                if (!isDragging) {
-                    const index = Math.round(carousel.scrollLeft / carousel.offsetWidth);
-                    openModal(imagesArray[index]);
+                        document.body.classList.add("fade-out");
+                        setTimeout(() => { window.location.href = href; }, 500);
+                    });
                 }
             });
         });
