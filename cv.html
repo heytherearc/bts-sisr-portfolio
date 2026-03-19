@@ -9,6 +9,21 @@
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #050505; }
         .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        /* État par défaut de la page au chargement */
+    body { 
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    }
+
+/* Apparition (Fade In) */
+    body.fade-in { 
+    opacity: 1;
+    }
+
+/* Disparition (Fade Out) */
+    .fade-out { 
+    opacity: 0 !important; 
+    }
     </style>
 </head>
 <body class="text-zinc-300 pb-20">
@@ -120,30 +135,52 @@
 
     </main>
 <script>
-    const observerOptions = {
-        root: null,
-        // rootMargin 'hides' the trigger until the dot is in the center 40% of the screen
-        rootMargin: '-40% 0px -40% 0px', 
-        threshold: 0
-    };
+    document.addEventListener("DOMContentLoaded", () => {
+        // --- 1. GESTION DU FADE IN/OUT ---
+        // Apparition de la page
+        setTimeout(() => {
+            document.body.classList.add('fade-in');
+        }, 50);
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            const dot = entry.target;
-            if (entry.isIntersecting) {
-                // LIGHT UP: Change to blue and add shadow
-                dot.classList.remove('bg-zinc-800');
-                dot.classList.add('bg-blue-500', 'shadow-[0_0_15px_rgba(59,130,246,0.8)]', 'scale-125');
-            } else {
-                // DIM DOWN: Back to gray
-                dot.classList.add('bg-zinc-800');
-                dot.classList.remove('bg-blue-500', 'shadow-[0_0_15px_rgba(59,130,246,0.8)]', 'scale-125');
+        // Sortie de la page sur les liens
+        const links = document.querySelectorAll('nav a, a');
+        links.forEach(link => {
+            // On ignore le bouton "Télécharger PDF" pour ne pas bloquer le download
+            if (link.getAttribute('href').includes('.html')) {
+                link.addEventListener("click", e => {
+                    e.preventDefault();
+                    const target = link.href;
+                    document.body.classList.add("fade-out");
+                    setTimeout(() => {
+                        window.location.href = target;
+                    }, 500);
+                });
             }
         });
-    }, observerOptions);
 
-    document.querySelectorAll('.timeline-dot').forEach(dot => {
-        observer.observe(dot);
+        // --- 2. TON INTERSECTION OBSERVER (TIMELINE) ---
+        const observerOptions = {
+            root: null,
+            rootMargin: '-40% 0px -40% 0px', 
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const dot = entry.target;
+                if (entry.isIntersecting) {
+                    dot.classList.remove('bg-zinc-800');
+                    dot.classList.add('bg-blue-500', 'shadow-[0_0_15px_rgba(59,130,246,0.8)]', 'scale-125');
+                } else {
+                    dot.classList.add('bg-zinc-800');
+                    dot.classList.remove('bg-blue-500', 'shadow-[0_0_15px_rgba(59,130,246,0.8)]', 'scale-125');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.timeline-dot').forEach(dot => {
+            observer.observe(dot);
+        });
     });
 </script>
 </body>
