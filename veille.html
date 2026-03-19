@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veille Technologique | Enzo PEBE NGOMA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+        
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #050505; 
+            color: #d4d4d8;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        body.fade-in { opacity: 1; }
+        .fade-out { opacity: 0 !important; }
+
+        .glass { 
+            background: rgba(255, 255, 255, 0.02); 
+            backdrop-filter: blur(12px); 
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            transition: all 0.4s ease; 
+        }
+
+        .hero-glow { 
+            position: absolute; top: 0; left: 50%; transform: translateX(-50%); 
+            width: 100%; height: 100vh; 
+            background: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.08) 0%, transparent 70%); 
+            pointer-events: none; 
+        }
+    </style>
+</head>
+
+<body class="selection:bg-blue-500/30 overflow-x-hidden">
+
+    <div class="hero-glow"></div>
+
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 glass px-6 py-3 rounded-full flex gap-6 text-[9px] font-bold uppercase tracking-widest whitespace-nowrap">
+        <a href="index.html" class="hover:text-white transition text-zinc-500">Accueil</a>
+        <a href="bts-sio.html" class="hover:text-white transition text-zinc-500">BTS SIO</a>
+        <a href="cv.html" class="hover:text-white transition text-zinc-500">CV</a>
+        <a href="projets.html" class="hover:text-white transition text-zinc-500">Projets</a>
+        <a href="certifications.html" class="hover:text-white transition text-zinc-500">Certifications</a>
+        <a href="veille.html" class="text-white border-b border-blue-500">Veille</a>
+        <a href="interets.html" class="hover:text-white transition text-zinc-500">Intérêts</a>
+        <a href="contact.html" class="hover:text-white transition text-zinc-500">Contact</a>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-6 pt-32 relative z-10 pb-20">
+        
+        <header class="mb-16">
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tighter uppercase text-center">Veille Technologique</h1>
+        </header>
+
+        <article class="glass p-10 rounded-[3rem] mb-8 border-l-4 border-blue-500">
+            <h3 class="text-2xl font-black text-white uppercase mb-6 tracking-tight">Qu'est-ce qu'une cyberattaque ?</h3>
+            <p class="text-zinc-500 text-sm leading-relaxed mb-6">
+                Une cyberattaque désigne toute tentative d'atteinte à un système d'information réalisée à des fins malveillantes. Elle vise à compromettre la confidentialité, l'intégrité ou la disponibilité des données (la triade DIC). Ces attaques peuvent prendre la forme d'un vol de données, d'une paralysie de service ou d'une extorsion financière.
+            </p>
+            <div class="flex items-center justify-between border-t border-white/5 pt-6">
+                <span class="text-[9px] font-bold text-zinc-600 uppercase tracking-widest">Référence : Glossaire ANSSI</span>
+                <a href="https://cyber.gouv.fr/cyberdico/" target="_blank" class="text-[9px] text-blue-400 hover:text-white transition uppercase font-bold tracking-widest underline underline-offset-4">Voir la source officielle</a>
+            </div>
+        </article>
+
+        
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <article class="glass p-10 rounded-[3rem] border-t-2 border-white/5">
+                <h3 class="text-xl font-black text-white uppercase mb-4 tracking-tight text-blue-400">Vecteurs et Types</h3>
+                <p class="text-zinc-500 text-xs leading-relaxed mb-6">
+                    On distingue plusieurs méthodes : l'ingénierie sociale (hameçonnage), les attaques par déni de service (DDoS) et l'exploitation de vulnérabilités logicielles (injections, Zero-Day).
+                </p>
+                <a href="https://owasp.org/www-project-top-ten/" target="_blank" class="text-[9px] text-zinc-400 hover:text-white transition uppercase font-bold tracking-widest">Source : OWASP Top 10</a>
+            </article>
+
+            <article class="glass p-10 rounded-[3rem] border-t-2 border-white/5">
+                <h3 class="text-xl font-black text-white uppercase mb-4 tracking-tight text-purple-400">Évolution des Menaces</h3>
+                <p class="text-zinc-500 text-xs leading-relaxed mb-6">
+                    L'histoire de la cybercriminalité montre une transition majeure : du sabotage "amateur" des années 2000 à l'industrialisation actuelle via le Ransomware-as-a-Service (RaaS).
+                </p>
+                <a href="https://www.bleepingcomputer.com/" target="_blank" class="text-[9px] text-zinc-400 hover:text-white transition uppercase font-bold tracking-widest">Source : Bleeping Computer</a>
+            </article>
+        </div>
+
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            setTimeout(() => { document.body.classList.add('fade-in'); }, 50);
+            const links = document.querySelectorAll('nav a, a');
+            links.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href && href.includes('.html') && !href.startsWith('http')) {
+                    link.addEventListener("click", e => {
+                        e.preventDefault();
+                        document.body.classList.add("fade-out");
+                        setTimeout(() => { window.location.href = href; }, 500);
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
