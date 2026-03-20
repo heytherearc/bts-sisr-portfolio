@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projet GSB | Enzo PEBE NGOMA</title>
+    <title>Détails Projet GSB | Enzo PEBE NGOMA</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
@@ -14,121 +14,253 @@
             color: #d4d4d8;
             opacity: 0;
             transition: opacity 0.5s ease-in-out;
+            overflow-x: hidden;
         }
 
         body.fade-in { opacity: 1; }
         .fade-out { opacity: 0 !important; }
 
+        /* Animated Background Orbs */
+        .bg-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: -2;
+            animation: float 20s infinite alternate ease-in-out;
+        }
+        .orb-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: rgba(59, 130, 246, 0.25); } /* Blue */
+        .orb-2 { bottom: -10%; right: -10%; width: 60vw; height: 60vw; background: rgba(139, 92, 246, 0.2); animation-delay: -5s; } /* Purple */
+        .orb-3 { top: 40%; left: 30%; width: 40vw; height: 40vw; background: rgba(16, 185, 129, 0.15); animation-delay: -10s; } /* Emerald */
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(8%, 12%) scale(1.1); }
+        }
+
+        /* Glassmorphism Panel */
         .glass { 
-            background: rgba(255, 255, 255, 0.02); 
-            backdrop-filter: blur(12px); 
+            background: rgba(255, 255, 255, 0.03); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.08); 
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
             transition: all 0.4s ease; 
         }
 
-        .hero-glow { 
-            position: absolute; top: 0; left: 50%; transform: translateX(-50%); 
-            width: 100%; height: 100vh; 
-            background: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.08) 0%, transparent 70%); 
-            pointer-events: none; 
-        }
-
         .tech-badge {
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 4px 12px;
             border-radius: 8px;
             font-size: 10px;
             font-weight: 700;
-            color: #60a5fa;
+            color: #e4e4e7;
             text-transform: uppercase;
+        }
+
+        .gallery-img {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 40px -10px rgba(59, 130, 246, 0.4);
+            z-index: 10;
+        }
+
+        h2.section-title {
+            font-size: 1.875rem;
+            font-weight: 900;
+            color: #ffffff;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.05em;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 0.75rem;
+            margin-top: 3rem;
+        }
+
+        h2.section-title:first-child {
+            margin-top: 0;
+        }
+
+        h3.subsection-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #a78bfa; /* Light purple to match the background */
+            text-transform: uppercase;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
         }
     </style>
 </head>
 
-<body class="selection:bg-blue-500/30 overflow-x-hidden">
+<body class="selection:bg-blue-500/30">
 
-    <div class="hero-glow"></div>
-
-    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 glass px-6 py-3 rounded-full flex gap-6 text-[9px] font-bold uppercase tracking-widest whitespace-nowrap">
-        <a href="index.html" class="hover:text-white transition text-zinc-500">Accueil</a>
-        <a href="bts-sio.html" class="hover:text-white transition text-zinc-500">BTS SIO</a>
-        <a href="cv.html" class="hover:text-white transition text-zinc-500">CV</a>
-        <a href="projets.html" class="hover:text-white transition text-zinc-500">Projets</a>
-        <a href="certifications.html" class="hover:text-white transition text-zinc-500">Certifications</a>
-        <a href="veille.html" class="hover:text-white transition text-zinc-500">Veille</a>
-        <a href="interets.html" class="hover:text-white transition text-zinc-500">Intérêts</a>
-        <a href="contact.html" class="hover:text-white transition text-zinc-500">Contact</a>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+    <div class="fixed inset-0 bg-[#050505]/40 z-[-1] pointer-events-none"></div> <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 glass px-6 py-3 rounded-full flex gap-6 text-[9px] font-bold uppercase tracking-widest whitespace-nowrap">
+        <a href="index.html" class="hover:text-white transition text-zinc-300">Accueil</a>
+        <a href="bts-sio.html" class="hover:text-white transition text-zinc-300">BTS SIO</a>
+        <a href="cv.html" class="hover:text-white transition text-zinc-300">CV</a>
+        <a href="projets.html" class="text-white transition border-b border-purple-400 pb-1">Projets</a>
+        <a href="certifications.html" class="hover:text-white transition text-zinc-300">Certifications</a>
+        <a href="veille.html" class="hover:text-white transition text-zinc-300">Veille</a>
+        <a href="interets.html" class="hover:text-white transition text-zinc-300">Intérêts</a>
+        <a href="contact.html" class="hover:text-white transition text-zinc-300">Contact</a>
     </nav>
 
-    <main class="max-w-5xl mx-auto px-6 pt-32 relative z-10 pb-20">
+    <main class="max-w-4xl mx-auto px-6 pt-32 relative z-10 pb-20">
         
         <header class="mb-16">
+            <a href="projets.html" class="inline-flex items-center gap-2 text-zinc-400 hover:text-white text-xs font-bold uppercase tracking-widest transition mb-8">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                Retour
+            </a>
             <div class="flex gap-2 mb-6">
-                <span class="tech-badge">SISR</span>
-                <span class="tech-badge">Infrastructure</span>
+                <span class="tech-badge">XCP-NG</span>
+                <span class="tech-badge">Active Directory</span>
+                <span class="tech-badge">Hardware</span>
             </div>
-            <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tighter uppercase">Infrastructure GSB</h1>
-            <p class="text-zinc-500 text-lg max-w-2xl">
-                Déploiement complet d'un environnement virtualisé sécurisé incluant la gestion d'annuaire Active Directory et la segmentation réseau.
+            <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tighter uppercase drop-shadow-lg">Projet GSB</h1>
+            <p class="text-zinc-300 text-lg leading-relaxed">
+                Conception, déploiement matériel et sécurisation d'une infrastructure d'entreprise complète.
             </p>
         </header>
 
-        <section class="grid md:grid-cols-2 gap-8 mb-12">
-            <article class="glass p-10 rounded-[3rem]">
-                <h3 class="text-2xl font-black text-white uppercase mb-6 underline decoration-blue-500 decoration-4 underline-offset-8">Mise en place</h3>
-                <p class="text-zinc-500 text-sm leading-relaxed mb-6">
-                    Le projet débute par le brassage physique de l'hyperviseur Bare Metal vers la baie de brassage. L'installation de XCP-ng permet la création d'un socle de virtualisation robuste, piloté à distance via Xen Orchestra (XOA).
+        <section class="glass p-8 md:p-12 rounded-[3rem] mb-12 relative overflow-hidden">
+            
+            <div>
+                <h2 class="section-title">1 – INTRODUCTION</h2>
+                <p class="text-zinc-300 text-sm leading-relaxed text-justify mb-4">
+                    Cette réalisation a été effectuée durant mon cursus en BTS SIO. Nous avons eu pour mission de concevoir, installer et configurer une infrastructure complète pour le compte d'une entreprise cliente fictive : <strong>GSB (Galaxy Swiss-Bourdin)</strong>, issue de la fusion de deux laboratoires pharmaceutiques.
                 </p>
-                <ul class="text-zinc-400 text-xs space-y-2">
-                    <li>• Hyperviseur : XCP-ng (Xen)</li>
-                    <li>• Management : Xen Orchestra (XOA)</li>
-                    <li>• Réseau : Segmentation VLAN (802.1Q)</li>
-                </ul>
-            </article>
+                <p class="text-zinc-300 text-sm leading-relaxed text-justify mb-4">
+                    Durant ce projet, nous avons été chargés de réaliser l'installation physique (hardware) et logicielle du réseau. L'objectif n'était pas uniquement d'aligner des configurations, mais de raisonner en tant que techniciens supérieurs pour bâtir une infrastructure cohérente, homogène et hautement disponible.
+                </p>
+            </div>
 
-            <article class="glass p-10 rounded-[3rem]">
-                <h3 class="text-2xl font-black text-white uppercase mb-6 underline decoration-blue-500 decoration-4 underline-offset-8">Identité & DNS</h3>
-                <p class="text-zinc-500 text-sm leading-relaxed">
-                    Configuration du domaine <strong>poled.local</strong> avec deux contrôleurs de domaine (DC) pour assurer la redondance des services DNS, DHCP et AD DS.
+            <div>
+                <h2 class="section-title">2 – OBJECTIFS ET ENJEUX</h2>
+                <p class="text-zinc-300 text-sm leading-relaxed text-justify mb-4">
+                    Ce contexte avait pour objectif de nous faire travailler dans une véritable situation professionnelle. Les enjeux majeurs s'articulaient autour de deux axes :
                 </p>
-                <div class="mt-8 space-y-3">
-                    <div class="flex justify-between items-center bg-white/5 p-3 rounded-xl border border-white/5">
-                        <span class="text-[10px] font-bold uppercase">DC01 (mon pote)</span>
-                        <span class="text-[10px] font-mono text-blue-400">172.16.0.30</span>
-                    </div>
-                    <div class="flex justify-between items-center bg-white/5 p-3 rounded-xl border border-white/5">
-                        <span class="text-[10px] font-bold uppercase">DC02 (Enzo)</span>
-                        <span class="text-[10px] font-mono text-blue-400">172.16.0.32</span>
-                    </div>
-                </div>
-            </article>
+                <ul class="list-disc list-inside text-zinc-300 text-sm space-y-2 mb-4">
+                    <li><strong>La maîtrise technique :</strong> Comprendre le fonctionnement d'un SI de sa conception à sa sécurisation, en proposant des solutions adaptées aux contraintes matérielles.</li>
+                    <li><strong>Les objectifs relationnels :</strong> Interagir au sein d'un groupe, prendre des décisions collectives et répartir les tâches intelligemment pour tenir les délais.</li>
+                </ul>
+            </div>
+
+            <div>
+                <h2 class="section-title">3 – CONTEXTE HUMAIN ET MATÉRIEL</h2>
+                <p class="text-zinc-300 text-sm leading-relaxed text-justify mb-4">
+                    Pour réaliser ce projet, nous étions une équipe de quatre étudiants, divisée en <strong>deux binômes</strong>. Nous avons travaillé sur une infrastructure "on-premise" (sur site) totalement dédiée à notre groupe.
+                </p>
+                <p class="text-zinc-300 text-sm leading-relaxed text-justify mb-4">
+                    Notre équipement de base comprenait des serveurs physiques, des baies de brassage et des commutateurs (switchs). Une des exigences fortes du client GSB était le respect absolu d'un plan d'adressage IP massif, capable de supporter la croissance de l'entreprise pharmaceutique.
+                </p>
+            </div>
+
+            <div>
+                <h2 class="section-title">4 – ÉTAPES DU PROJET</h2>
+                
+                <h3 class="subsection-title">4.1 – Upgrade Matériel et Routage (Switch)</h3>
+                <p class="text-zinc-300 text-sm leading-relaxed text-justify mb-4">
+                    Avant même de toucher à la configuration logicielle, nous avons effectué une intervention matérielle. Nous avons ouvert nos deux serveurs physiques pour remplacer les anciens disques durs par des <strong>SSD neufs</strong>, garantissant ainsi des performances d'E/S (Entrées/Sorties) optimales pour nos futures machines virtuelles.
+                </p>
+                <p class="text-zinc-300 text-sm leading-relaxed text-justify mb-4 mt-4">
+                    Ensuite, nous avons racké les serveurs dans la baie de brassage et raccordé physiquement les interfaces réseaux au switch central. À l'aide d'un PC d'administration et du logiciel <strong>PuTTY</strong>, nous avons configuré le commutateur en ligne de commande. Nous avons segmenté le réseau via des <strong>VLANs</strong> : le VLAN 300 pour la production et le VLAN 150, totalement isolé, pour les visiteurs. Des ACLs (Access Control Lists) ont été appliquées pour empêcher toute communication entre ces deux zones.
+                </p>
+
+                <h3 class="subsection-title">4.2 – Hypervision (XCP-ng & XOA)</h3>
+                <p class="text-zinc-300 text-sm leading-relaxed text-justify mb-4">
+                    Sur notre matériel fraîchement mis à niveau, nous avons installé l'hyperviseur "Bare Metal" <strong>XCP-ng 8.3</strong>. Ce socle nous a permis de diviser la puissance de nos serveurs pour héberger notre infrastructure virtuelle. 
+                </p>
+                <p class="text-zinc-300 text-sm leading-relaxed text-justify mb-4 mt-4">
+                    Pour piloter cet environnement de manière centralisée, nous avons déployé <strong>Xen Orchestra (XOA)</strong>. Cette interface web nous a offert une gestion fluide des ressources (RAM, CPU, Stockage) et nous a permis de sécuriser notre travail grâce à des <strong>Snapshots</strong> réguliers.
+                </p>
+
+                <h3 class="subsection-title">4.3 – Identité et Haute Disponibilité (poled.local)</h3>
+                <p class="text-zinc-300 text-sm leading-relaxed text-justify mb-4">
+                    Le cœur du système d'information repose sur le domaine <strong>poled.local</strong>. Nous avons déployé deux machines virtuelles sous Windows Server 2022 (une par binôme) que nous avons promues en tant que Contrôleurs de Domaine (Active Directory).
+                </p>
+                <p class="text-zinc-300 text-sm leading-relaxed text-justify mb-4 mt-4">
+                    Pour répondre au cahier des charges GSB, ces serveurs ont été placés dans le VLAN 300 avec des IP statiques (172.16.0.30 et .32) et un masque très large en <strong>/17 (255.255.128.0)</strong>, routé par la passerelle 172.16.0.1. L'enjeu de la Haute Disponibilité a été validé en configurant une réplication bidirectionnelle parfaite entre nos deux serveurs (vérifiée via la commande <code>repadmin</code> avec 0 échec). L'ajout des rôles DNS et DHCP a rendu l'infrastructure totalement autonome.
+                </p>
+
+                <h3 class="subsection-title">4.4 – Validation : Le Poste Client</h3>
+                <p class="text-zinc-300 text-sm leading-relaxed text-justify mb-4">
+                    La preuve de fonctionnement de toute cette architecture a été le déploiement d'une VM sous Windows 11. Connectée au switch virtuel, elle a automatiquement reçu une configuration IP de notre DHCP, a pu interroger le DNS, et a rejoint avec succès le domaine de l'entreprise, validant ainsi toute la chaîne de liaison.
+                </p>
+            </div>
+
+            <div>
+                <h2 class="section-title">5 – CE QUE JE RETIENS</h2>
+                <p class="text-zinc-300 text-sm leading-relaxed text-justify mb-4">
+                    Ce projet m'a apporté plus que n'importe quel simple exercice scolaire. J'ai pu exercer concrètement le métier d'administrateur système et réseau, de la manipulation physique des composants jusqu'au paramétrage complexe d'annuaires redondants. Bien que nous ayons rencontré des défis techniques (erreurs de routage, configurations de réplication), la fierté de voir une infrastructure de "Haute Disponibilité" fonctionner parfaitement entre nos deux binômes a été extrêmement formatrice. Cela a radicalement changé ma manière de raisonner face au troubleshooting (résolution de problèmes).
+                </p>
+            </div>
+
         </section>
 
-        <section class="glass p-10 rounded-[3rem] mb-12">
-            <h3 class="text-2xl font-black text-white uppercase mb-8 text-center">Réalisation Technique</h3>
-            <div class="grid md:grid-cols-3 gap-8 text-center">
-                <div>
-                    <h4 class="text-white font-bold uppercase text-[10px] mb-4 tracking-widest text-blue-400">Active Directory</h4>
-                    <p class="text-zinc-600 text-xs leading-relaxed">Déploiement des rôles AD DS via Server Manager. Création de la forêt poled.local et gestion des objets du parc informatique.</p>
-                </div>
-                <div>
-                    <h4 class="text-white font-bold uppercase text-[10px] mb-4 tracking-widest text-purple-400">Réseau GSB</h4>
-                    <p class="text-zinc-600 text-xs leading-relaxed">Respect des règles de nommage et d'adressage GSB. Configuration des scopes DHCP et des zones de recherche inversées DNS.</p>
-                </div>
-                <div>
-                    <h4 class="text-white font-bold uppercase text-[10px] mb-4 tracking-widest text-emerald-400">Client Windows</h4>
-                    <p class="text-zinc-600 text-xs leading-relaxed">Installation d'un poste client Windows 10/11 pour valider la jonction au domaine et l'application des politiques réseau.</p>
-                </div>
+        <section class="mb-12">
+            <h2 class="section-title text-center border-none drop-shadow-lg">6 – GALERIE DE PRODUCTION</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-6 glass rounded-[3rem]" id="gallery-container">
+                <img src="pictures/xcp1.jpg" alt="Capture GSB 1" loading="lazy" class="gallery-img rounded-xl border border-white/10 w-full aspect-video object-cover cursor-pointer">
+                <img src="pictures/xcp2.jpg" alt="Capture GSB 2" loading="lazy" class="gallery-img rounded-xl border border-white/10 w-full aspect-video object-cover cursor-pointer">
+                <img src="pictures/xcp3.jpg" alt="Capture GSB 3" loading="lazy" class="gallery-img rounded-xl border border-white/10 w-full aspect-video object-cover cursor-pointer">
+                <img src="pictures/xcp4.jpg" alt="Capture GSB 4" loading="lazy" class="gallery-img rounded-xl border border-white/10 w-full aspect-video object-cover cursor-pointer">
+                <img src="pictures/xcp5.jpg" alt="Capture GSB 5" loading="lazy" class="gallery-img rounded-xl border border-white/10 w-full aspect-video object-cover cursor-pointer">
+                <img src="pictures/xcp6.jpg" alt="Capture GSB 6" loading="lazy" class="gallery-img rounded-xl border border-white/10 w-full aspect-video object-cover cursor-pointer">
+                <img src="pictures/xcp7.jpg" alt="Capture GSB 7" loading="lazy" class="gallery-img rounded-xl border border-white/10 w-full aspect-video object-cover cursor-pointer">
+                <img src="pictures/xcp8.jpg" alt="Capture GSB 8" loading="lazy" class="gallery-img rounded-xl border border-white/10 w-full aspect-video object-cover cursor-pointer">
+                <img src="pictures/xcp9.jpg" alt="Capture GSB 9" loading="lazy" class="gallery-img rounded-xl border border-white/10 w-full aspect-video object-cover cursor-pointer">
+                <img src="pictures/xcp10.jpg" alt="Capture GSB 10" loading="lazy" class="gallery-img rounded-xl border border-white/10 w-full aspect-video object-cover cursor-pointer">
+                <img src="pictures/xcp11.jpg" alt="Capture GSB 11" loading="lazy" class="gallery-img rounded-xl border border-white/10 w-full aspect-video object-cover cursor-pointer">
+                <img src="pictures/xcp12.jpg" alt="Capture GSB 12" loading="lazy" class="gallery-img rounded-xl border border-white/10 w-full aspect-video object-cover cursor-pointer">
+                <img src="pictures/xcp13.jpg" alt="Capture GSB 13" loading="lazy" class="gallery-img rounded-xl border border-white/10 w-full aspect-video object-cover cursor-pointer">
+                <img src="pictures/xcp14.jpg" alt="Capture GSB 14" loading="lazy" class="gallery-img rounded-xl border border-white/10 w-full aspect-video object-cover cursor-pointer">
+                <img src="pictures/xcp15.jpg" alt="Capture GSB 15" loading="lazy" class="gallery-img rounded-xl border border-white/10 w-full aspect-video object-cover cursor-pointer">
+                <img src="pictures/xcp16.jpg" alt="Capture GSB 16" loading="lazy" class="gallery-img rounded-xl border border-white/10 w-full aspect-video object-cover cursor-pointer">
+                <img src="pictures/xcp17.jpg" alt="Capture GSB 17" loading="lazy" class="gallery-img rounded-xl border border-white/10 w-full aspect-video object-cover cursor-pointer">
+                <img src="pictures/xcp18.jpg" alt="Capture GSB 18" loading="lazy" class="gallery-img rounded-xl border border-white/10 w-full aspect-video object-cover cursor-pointer">
+                <img src="pictures/xcp19.jpg" alt="Capture GSB 19" loading="lazy" class="gallery-img rounded-xl border border-white/10 w-full aspect-video object-cover cursor-pointer">
+                <img src="pictures/xcp20.jpg" alt="Capture GSB 20" loading="lazy" class="gallery-img rounded-xl border border-white/10 w-full aspect-video object-cover cursor-pointer">
+                <img src="pictures/xcp21.jpg" alt="Capture GSB 21" loading="lazy" class="gallery-img rounded-xl border border-white/10 w-full aspect-video object-cover cursor-pointer">
+                <img src="pictures/xcp22.jpg" alt="Capture GSB 22" loading="lazy" class="gallery-img rounded-xl border border-white/10 w-full aspect-video object-cover cursor-pointer">
+                <img src="pictures/xcp23.jpg" alt="Capture GSB 23" loading="lazy" class="gallery-img rounded-xl border border-white/10 w-full aspect-video object-cover cursor-pointer">
+                <img src="pictures/xcp24.jpg" alt="Capture GSB 24" loading="lazy" class="gallery-img rounded-xl border border-white/10 w-full aspect-video object-cover cursor-pointer">
+                <img src="pictures/xcp25.jpg" alt="Capture GSB 25" loading="lazy" class="gallery-img rounded-xl border border-white/10 w-full aspect-video object-cover cursor-pointer">
+                <img src="pictures/xcp26.jpg" alt="Capture GSB 26" loading="lazy" class="gallery-img rounded-xl border border-white/10 w-full aspect-video object-cover cursor-pointer">
+                <img src="pictures/xcp27.jpg" alt="Capture GSB 27" loading="lazy" class="gallery-img rounded-xl border border-white/10 w-full aspect-video object-cover cursor-pointer">
+                <img src="pictures/xcp28.jpg" alt="Capture GSB 28" loading="lazy" class="gallery-img rounded-xl border border-white/10 w-full aspect-video object-cover cursor-pointer">
+                <img src="pictures/xcp29.jpg" alt="Capture GSB 29" loading="lazy" class="gallery-img rounded-xl border border-white/10 w-full aspect-video object-cover cursor-pointer">
             </div>
         </section>
 
     </main>
 
+    <div id="lightbox" class="fixed inset-0 z-[100] hidden bg-black/80 backdrop-blur-xl flex items-center justify-center opacity-0 transition-opacity duration-300">
+        <button id="close-btn" class="absolute top-6 right-8 text-zinc-400 hover:text-white text-4xl transition">&times;</button>
+        <button id="prev-btn" class="absolute left-4 md:left-12 text-white/50 hover:text-white text-5xl md:text-6xl transition select-none">&#10094;</button>
+        
+        <div class="relative max-w-[90vw] max-h-[85vh] flex flex-col items-center">
+            <img id="lightbox-img" class="max-h-[80vh] object-contain rounded-xl shadow-[0_0_50px_rgba(139,92,246,0.2)] border border-white/20" src="" alt="Zoomed Capture">
+            <div id="lightbox-caption" class="mt-4 text-zinc-300 font-bold tracking-widest text-xs uppercase"></div>
+        </div>
+        
+        <button id="next-btn" class="absolute right-4 md:right-12 text-white/50 hover:text-white text-5xl md:text-6xl transition select-none">&#10095;</button>
+    </div>
+
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             setTimeout(() => { document.body.classList.add('fade-in'); }, 50);
-            const links = document.querySelectorAll('nav a, a');
+            
+            const links = document.querySelectorAll('nav a, a:not(#prev-btn):not(#next-btn):not(#close-btn)');
             links.forEach(link => {
                 const href = link.getAttribute('href');
                 if (href && href.includes('.html') && !href.startsWith('http')) {
@@ -138,6 +270,78 @@
                         setTimeout(() => { window.location.href = href; }, 500);
                     });
                 }
+            });
+
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+            const images = document.querySelectorAll('.gallery-img');
+            let currentIndex = 0;
+            let slideInterval;
+
+            function openLightbox(index) {
+                currentIndex = index;
+                updateLightbox();
+                lightbox.classList.remove('hidden');
+                setTimeout(() => lightbox.classList.remove('opacity-0'), 10);
+                startAutoSlide();
+                document.body.style.overflow = 'hidden'; 
+            }
+
+            function closeLightbox() {
+                lightbox.classList.add('opacity-0');
+                setTimeout(() => lightbox.classList.add('hidden'), 300);
+                stopAutoSlide();
+                document.body.style.overflow = ''; 
+            }
+
+            function updateLightbox() {
+                lightboxImg.src = images[currentIndex].src;
+                lightboxCaption.innerText = `Capture ${currentIndex + 1} / ${images.length}`;
+            }
+
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % images.length;
+                updateLightbox();
+                resetAutoSlide(); 
+            }
+
+            function prevSlide() {
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+                updateLightbox();
+                resetAutoSlide();
+            }
+
+            function startAutoSlide() {
+                slideInterval = setInterval(nextSlide, 5000); 
+            }
+
+            function stopAutoSlide() {
+                clearInterval(slideInterval);
+            }
+
+            function resetAutoSlide() {
+                stopAutoSlide();
+                startAutoSlide();
+            }
+
+            images.forEach((img, index) => {
+                img.addEventListener('click', () => openLightbox(index));
+            });
+
+            document.getElementById('close-btn').addEventListener('click', closeLightbox);
+            document.getElementById('next-btn').addEventListener('click', nextSlide);
+            document.getElementById('prev-btn').addEventListener('click', prevSlide);
+
+            lightbox.addEventListener('click', (e) => {
+                if(e.target === lightbox) closeLightbox();
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if(lightbox.classList.contains('hidden')) return;
+                if(e.key === 'Escape') closeLightbox();
+                if(e.key === 'ArrowRight') nextSlide();
+                if(e.key === 'ArrowLeft') prevSlide();
             });
         });
     </script>
