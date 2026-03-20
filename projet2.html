@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventaire & Helpdesk | Enzo PEBE NGOMA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+        
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #050505; 
+            color: #d4d4d8;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        body.fade-in { opacity: 1; }
+        .fade-out { opacity: 0 !important; }
+
+        .bg-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: -2;
+            animation: float 20s infinite alternate ease-in-out;
+        }
+        .orb-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: rgba(59, 130, 246, 0.12); }
+        .orb-2 { bottom: -10%; right: -10%; width: 60vw; height: 60vw; background: rgba(139, 92, 246, 0.08); }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(5%, 10%) scale(1.05); }
+        }
+
+        .glass { 
+            background: rgba(255, 255, 255, 0.02); 
+            backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+        }
+
+        .step-card {
+            border-left: 2px solid rgba(59, 130, 246, 0.4);
+            padding-left: 1.5rem;
+            margin-bottom: 5rem;
+        }
+
+        .code-block {
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 13px;
+            color: #94a3b8;
+            line-height: 1.6;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+
+        .code-keyword { color: #60a5fa; font-weight: bold; }
+        .code-comment { color: #475569; font-style: italic; }
+        .code-var { color: #818cf8; }
+        .code-sql { color: #fbbf24; }
+
+        .img-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: #0a0a0a;
+        }
+    </style>
+</head>
+<body class="selection:bg-blue-500/30">
+
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 glass px-6 py-3 rounded-full flex gap-6 text-[9px] font-bold uppercase tracking-widest whitespace-nowrap text-zinc-500">
+        <a href="projets.html" class="hover:text-white transition">← Retour aux projets</a>
+        <span class="text-zinc-800">|</span>
+        <a href="index.html" class="hover:text-white transition">Accueil</a>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-6 pt-32 pb-20 relative z-10">
+        
+        <header class="mb-20">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full text-[10px] font-bold text-blue-400 uppercase tracking-widest">Stage NDO Paris 16</span>
+            </div>
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tighter uppercase leading-none text-left">Infrastructure<br>GLPI 10</h1>
+            <p class="text-zinc-400 text-xl font-light leading-relaxed max-w-2xl text-left">
+                Documentation complète : Réseau, Stack LAMP et Déploiement d'agents sur un parc de <strong>290 actifs</strong>.
+            </p>
+        </header>
+
+        <section class="mb-20">
+            <h2 class="text-xs uppercase tracking-[0.2em] text-zinc-500 font-bold mb-10">01. État Final du Parc</h2>
+            <div class="grid md:grid-cols-2 gap-6 mb-10">
+                <div class="img-container">
+                    <img src="pictures/ocs_dashboard.jpg" alt="OCS Inventory" class="w-full grayscale hover:grayscale-0 transition duration-700">
+                    <div class="p-4 bg-zinc-900/80 text-[9px] text-zinc-500 font-bold uppercase tracking-widest text-center">Inventaire OCS Inventory</div>
+                </div>
+                <div class="img-container">
+                    <img src="pictures/glpi1.jpg" alt="Dashboard GLPI" class="w-full grayscale hover:grayscale-0 transition duration-700">
+                    <div class="p-4 bg-zinc-900/80 text-[9px] text-zinc-500 font-bold uppercase tracking-widest text-center">Dashboard GLPI Final (290 PC)</div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-xs uppercase tracking-[0.2em] text-zinc-500 font-bold mb-12">02. Log de Déploiement & Diagnostics</h2>
+            
+            <div class="space-y-16">
+
+                <div class="step-card">
+                    <h3 class="text-white font-black mb-4 text-2xl uppercase tracking-tight">Configuration & Vérification Réseau</h3>
+                    <p class="text-zinc-400 leading-relaxed text-justify mb-6">
+                        Fixation de l'identité du serveur Debian. Le passage en IP statique via le fichier <code>interfaces</code> garantit la persistance de la communication avec les agents déployés.
+                    </p>
+                    <div class="code-block text-zinc-300">
+                        <span class="code-comment"># Vérification de l'interface réseau active</span><br>
+                        ip a<br><br>
+                        <span class="code-comment"># Configuration de l'IP statique</span><br>
+                        sudo <span class="code-keyword">nano</span> /etc/network/interfaces<br><br>
+                        <span class="code-comment"># --- CONTENU DU FICHIER ---</span><br>
+                        auto enp0s3<br>
+                        iface enp0s3 inet static<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;address <span class="code-var">172.16.26.26</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;netmask <span class="code-var">255.255.255.0</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;gateway <span class="code-var">172.16.26.1</span><br>
+                        <span class="code-comment"># --------------------------</span><br><br>
+                        <span class="code-comment"># Redémarrage et Test de connectivité</span><br>
+                        sudo <span class="code-keyword">systemctl</span> restart networking<br>
+                        ping -c 3 google.fr
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <h3 class="text-white font-black mb-4 text-2xl uppercase tracking-tight">Préparation Système & LAMP</h3>
+                    <p class="text-zinc-400 leading-relaxed text-justify">
+                        Mise à jour du socle Debian 12 et installation de la stack Web (Apache, MariaDB) ainsi que des modules PHP requis.
+                    </p>
+                    <div class="code-block text-zinc-300">
+                        <span class="code-comment"># Mise à jour et gestion des privilèges</span><br>
+                        su - <br>
+                        apt update && apt upgrade -y<br>
+                                                                                                                                                                                                                                                                                                                                                                                                                                     <br>
+                        <span class="code-comment"># Installation Apache et PHP 8.2</span><br>
+                        <span class="code-keyword">sudo apt install</span> apache2 mariadb-server php8.2 php8.2-mysql php8.2-gd php8.2-curl php8.2-xml php8.2-intl -y<br><br>
+                        <span class="code-comment"># Vérification du statut des services</span><br>
+                        sudo <span class="code-keyword">systemctl</span> status apache2<br>
+                        sudo <span class="code-keyword">systemctl</span> status mariadb
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <h3 class="text-white font-black mb-4 text-2xl uppercase tracking-tight">Sécurisation & Base SQL</h3>
+                    <p class="text-zinc-400 leading-relaxed text-justify">
+                        Initialisation de l'instance SQL et création d'un utilisateur sécurisé avec des privilèges restreints sur la base de données GLPI.
+                    </p>
+                    <div class="code-block text-zinc-300">
+                        <span class="code-comment"># Sécurisation de l'instance MariaDB</span><br>
+                        <span class="code-keyword">sudo mysql_secure_installation</span><br><br>
+                        <span class="code-comment"># Configuration SQL</span><br>
+                        <span class="code-sql">CREATE DATABASE</span> glpi_db;<br>
+                        <span class="code-sql">CREATE USER</span> 'glpi_admin'@'localhost' <span class="code-sql">IDENTIFIED BY</span> 'password';<br>
+                        <span class="code-sql">GRANT ALL PRIVILEGES ON</span> glpi_db.* <span class="code-sql">TO</span> 'glpi_admin'@'localhost';
+                        <span class="code-sql">FLUSH PRIVILEGES</span>
+                        
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <h3 class="text-white font-black mb-4 text-2xl uppercase tracking-tight">Mise en Production GLPI</h3>
+                    <p class="text-zinc-400 leading-relaxed text-justify">
+                        Extraction des sources et ajustement récursif des permissions pour permettre au serveur Web de lire et écrire dans les répertoires critiques.
+                    </p>
+                    <div class="code-block text-zinc-300">
+                        <span class="code-comment"># Téléchargement et installation</span><br>
+                        wget https://github.com/glpi-project/glpi/releases/download/10.0.12/glpi-10.0.12.tgz<br>
+                        sudo tar -xvzf glpi-10.0.12.tgz -C /var/www/html/<br><br>
+                        <span class="code-comment"># Gestion des droits Apache (Point critique)</span><br>
+                        sudo <span class="code-keyword">chown</span> -R www-data:www-data /var/www/html/glpi<br>
+                        sudo <span class="code-keyword">chmod</span> -R 755 /var/www/html/glpi
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <h3 class="text-white font-black mb-4 text-2xl uppercase tracking-tight">Populations des Actifs</h3>
+                    <p class="text-zinc-400 leading-relaxed text-justify">
+                        Déploiement de l'agent sur les postes clients. Forçage manuel de l'inventaire pour valider la remontée vers l'interface centralisée.
+                    </p>
+                    <div class="code-block text-zinc-300">
+                        <span class="code-comment"># Installation et forçage de l'inventaire</span><br>
+                        sudo apt install glpi-agent -y<br>
+                        sudo <span class="code-keyword">glpi-agent</span> --server http://172.16.26.26/glpi/ --force
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="glass p-12 rounded-[4rem] text-center mt-20">
+            <h2 class="text-white font-black text-3xl uppercase tracking-tighter mb-6">Objectifs Atteints</h2>
+            <p class="text-zinc-500 text-sm leading-relaxed max-w-xl mx-auto italic">
+                "Ce déploiement assure désormais une visibilité totale sur l'infrastructure de NDO. La maîtrise de la stack système et réseau garantit la fiabilité des données d'inventaire pour les 290 postes actifs."
+            </p>
+        </section>
+
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            setTimeout(() => { document.body.classList.add('fade-in'); }, 50);
+            const links = document.querySelectorAll('nav a, a');
+            links.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href && href.includes('.html') && !href.startsWith('http')) {
+                    link.addEventListener("click", e => {
+                        e.preventDefault();
+                        document.body.classList.add("fade-out");
+                        setTimeout(() => { window.location.href = href; }, 500);
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
