@@ -12,11 +12,34 @@
             font-family: 'Plus Jakarta Sans', sans-serif; 
             background-color: #050505; 
             color: #d4d4d8;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            overflow-x: hidden;
+        }
+
+        body.fade-in { opacity: 1; }
+        .fade-out { opacity: 0 !important; }
+
+        .bg-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: -2;
+            animation: float 20s infinite alternate ease-in-out;
+        }
+        .orb-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: rgba(59, 130, 246, 0.2); }
+        .orb-2 { bottom: -10%; right: -10%; width: 60vw; height: 60vw; background: rgba(139, 92, 246, 0.15); animation-delay: -5s; }
+        .orb-3 { top: 40%; left: 30%; width: 40vw; height: 40vw; background: rgba(16, 185, 129, 0.1); animation-delay: -10s; }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(8%, 12%) scale(1.05); }
         }
 
         .glass { 
             background: rgba(255, 255, 255, 0.02); 
             backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.08); 
             transition: all 0.4s ease; 
         }
@@ -24,18 +47,6 @@
         .glass:hover { 
             border-color: rgba(59, 130, 246, 0.3); 
             background: rgba(255, 255, 255, 0.04); 
-        }
-
-        .hero-glow { 
-            position: absolute; 
-            top: 0; 
-            left: 50%; 
-            transform: translateX(-50%); 
-            width: 100%; 
-            height: 100vh; 
-            background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 70%); 
-            pointer-events: none; 
-            z-index: 0;
         }
 
         .animate-bounce-slow { 
@@ -47,91 +58,83 @@
             40% { transform: translateY(-10px) translateX(-50%); }
             60% { transform: translateY(-5px) translateX(-50%); }
         }
-        /* La page est invisible par défaut pour permettre le Fade In */
-    body { 
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-    }
-
-/* Classe pour l'apparition (Fade In) */
-    body.fade-in { 
-    opacity: 1; 
-    }   
-
-/* Classe pour la disparition (Fade Out) */
-    .fade-out { 
-    opacity: 0 !important; 
-    }
     </style>
 </head>
-<body class="selection:bg-blue-500/30 overflow-x-hidden">
+<body class="selection:bg-blue-500/30">
 
-    <div class="hero-glow"></div>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+    <div class="fixed inset-0 bg-[#050505]/50 z-[-1] pointer-events-none"></div>
 
-    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 glass px-6 py-3 rounded-full flex gap-8 text-[10px] font-bold uppercase tracking-widest">
-        <a href="index.html" class="hover:text-white transition">Accueil</a>
-        <a href="bts-sio.html" class="hover:text-white transition">Le BTS SIO</a>
-        <a href="cv.html" class="hover:text-white transition">CV</a>
-        <a href="projets.html" class="hover:text-white transition"> Projets</a>
-        <a href="certifications.html" class="hover:text-white transition">Certifications</a>
-        <a href="veille.html" class="hover:text-white transition">Veille technologique</a>
-        <a href="interets.html" class="hover:text-white transition">Intérêts</a>
-        <a href="contact.html" class="hover:text-white transition">Contact</a>
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 glass px-6 py-3 rounded-full flex gap-8 text-[10px] font-bold uppercase tracking-widest whitespace-nowrap">
+        <a href="index.html" class="text-white border-b border-blue-500 pb-1">Accueil</a>
+        <a href="bts-sio.html" class="hover:text-white transition text-zinc-400">Le BTS SIO</a>
+        <a href="cv.html" class="hover:text-white transition text-zinc-400">CV</a>
+        <a href="projets.html" class="hover:text-white transition text-zinc-400">Projets</a>
+        <a href="certifications.html" class="hover:text-white transition text-zinc-400">Certifications</a>
+        <a href="veille.html" class="hover:text-white transition text-zinc-400">Veille technologique</a>
+        <a href="interets.html" class="hover:text-white transition text-zinc-400">Intérêts</a>
+        <a href="contact.html" class="hover:text-white transition text-zinc-400">Contact</a>
     </nav>
 
     <section id="about" class="min-h-screen flex flex-col items-center justify-center px-6 relative z-10">
         
-        <div class="glass p-10 md:p-16 rounded-[3rem] max-w-2xl w-full text-left">
+        <div class="glass p-10 md:p-16 rounded-[3rem] max-w-2xl w-full text-left shadow-2xl">
             <div class="mb-10">
-                <h1 class="text-4xl md:text-5xl font-extrabold text-white tracking-tighter mb-6">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-white tracking-tighter mb-6 uppercase">
                     Enzo PEBE NGOMA
                 </h1>
-                <div class="inline-block glass px-4 py-2 rounded-xl border border-blue-500/20">
-                    <p class="text-blue-400 font-mono text-[10px] uppercase tracking-[0.2em]">
-                        BTS SIO SISR — 2ème Année
-                    </p>
+                <div class="flex flex-wrap gap-3">
+                    <div class="glass px-4 py-2 rounded-xl border border-blue-500/20">
+                        <p class="text-blue-400 font-mono text-[10px] uppercase tracking-[0.2em]">
+                            BTS SIO SISR — 2ème Année
+                        </p>
+                    </div>
+                    <div class="glass px-4 py-2 rounded-xl border border-white/10">
+                        <p class="text-zinc-400 font-mono text-[10px] uppercase tracking-[0.2em]">
+                            Lycée Louis Armand
+                        </p>
+                    </div>
                 </div>
             </div>
 
-            <div class="space-y-6 text-zinc-400 text-lg leading-relaxed">
+            <div class="space-y-6 text-zinc-400 text-lg leading-relaxed font-light">
                 <p>
-                    Étudiant en 2ème année de BTS SIO (SISR), je suis passionné par l'informatique, avec un intérêt particulier pour la cybersécurité et l'audiovisuel.
+                    Actuellement étudiant en 2ème année de <span class="text-white font-medium">BTS SIO</span> (Services Informatiques aux Organisations) au <span class="text-white font-medium">Lycée Louis Armand</span> à Paris, je me spécialise en solutions d'infrastructure, systèmes et réseaux (<span class="text-white font-medium">SISR</span>).
                 </p>
                 <p>
-                    Mon parcours m'a permis de développer une rigueur technique dans l'administration des systèmes et des réseaux, tout en gardant un œil attentif sur l'aspect visuel et la création.
+                    Passionné par l'informatique technique, j'oriente mon parcours vers la cybersécurité et l'administration système, tout en cultivant une forte sensibilité pour l'audiovisuel et la création numérique.
+                </p>
+                <p>
+                    Rigoureux et polyvalent, mon objectif est de concevoir des architectures réseaux performantes tout en garantissant la sécurité et l'intégrité des données au sein des organisations.
                 </p>
             </div>
         </div>
 
-        <a href="bts-sio.html" class="absolute bottom-10 left-1/2 -translate-x-1/2 group flex flex-col items-center gap-2">
-    <div class="w-10 h-10 glass rounded-full flex items-center justify-center animate-bounce-slow hover:bg-blue-500/20 transition-colors">
-        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7"></path>
-        </svg>
-    </div>
+        <a href="bts-sio.html" class="absolute bottom-10 left-1/2 -translate-x-1/2 group flex flex-col items-center gap-2 internal-link">
+            <div class="w-10 h-10 glass rounded-full flex items-center justify-center animate-bounce-slow hover:bg-blue-500/20 transition-colors">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7"></path>
+                </svg>
+            </div>
+        </a>
     </section>
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        // 1. Animation d'entrée : on ajoute la classe après le chargement du DOM
         setTimeout(() => {
             document.body.classList.add("fade-in");
         }, 100);
 
-        // 2. Animation de sortie : on intercepte les clics sur les liens internes
-        const links = document.querySelectorAll('nav a, a.group');
-
+        const links = document.querySelectorAll('nav a, a.internal-link');
         links.forEach(link => {
             link.addEventListener("click", e => {
-                // On vérifie que c'est bien un lien vers une autre page locale (.html)
-                if (link.hostname === window.location.hostname && link.href.includes('.html')) {
-                    e.preventDefault(); // On bloque le changement de page immédiat
+                const href = link.getAttribute('href');
+                if (href && href.includes('.html') && !href.startsWith('http')) {
+                    e.preventDefault();
                     const target = link.href;
-
-                    // On lance le fondu de sortie
                     document.body.classList.add("fade-out");
-
-                    // On attend la fin de l'anim (500ms) pour changer de page
                     setTimeout(() => {
                         window.location.href = target;
                     }, 500);
@@ -140,8 +143,5 @@
         });
     });
 </script>
-
-
-
 </body>
 </html>
