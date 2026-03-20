@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>C'est quoi le BTS SIO ? | Enzo PEBE NGOMA</title>
+    <title>Le BTS SIO | Enzo PEBE NGOMA</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
@@ -12,136 +12,234 @@
             font-family: 'Plus Jakarta Sans', sans-serif; 
             background-color: #050505; 
             color: #d4d4d8;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            overflow-x: hidden;
+        }
+
+        body.fade-in { opacity: 1; }
+        .fade-out { opacity: 0 !important; }
+
+        .bg-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: -2;
+            animation: float 20s infinite alternate ease-in-out;
+        }
+        .orb-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: rgba(59, 130, 246, 0.2); }
+        .orb-2 { bottom: -10%; right: -10%; width: 60vw; height: 60vw; background: rgba(139, 92, 246, 0.15); animation-delay: -5s; }
+        .orb-3 { top: 40%; left: 30%; width: 40vw; height: 40vw; background: rgba(16, 185, 129, 0.1); animation-delay: -10s; }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(8%, 12%) scale(1.05); }
         }
 
         .glass { 
-            background: rgba(255, 255, 255, 0.02); 
-            backdrop-filter: blur(12px); 
+            background: rgba(255, 255, 255, 0.03); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.08); 
             transition: all 0.4s ease; 
         }
-        
-        .glass:hover { 
-            border-color: rgba(59, 130, 246, 0.3); 
-            background: rgba(255, 255, 255, 0.04); 
+
+        h2.section-title {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: #ffffff;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.05em;
+            border-left: 4px solid #60a5fa;
+            padding-left: 1rem;
+            margin-top: 3.5rem;
         }
 
-        .hero-glow { 
-            position: absolute; 
-            top: 0; 
-            left: 50%; 
-            transform: translateX(-50%); 
-            width: 100%; 
-            height: 100vh; 
-            background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 70%); 
-            pointer-events: none; 
-            z-index: 0;
+        h2.section-title:first-child { margin-top: 0; }
+
+        .list-accent li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.8rem;
         }
 
-        .animate-bounce-slow { 
-            animation: bounce 3s infinite; 
+        .list-accent li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #60a5fa;
+            font-weight: bold;
         }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
-            40% { transform: translateY(-10px) translateX(-50%); }
-            60% { transform: translateY(-5px) translateX(-50%); }
+        .grid-layout {
+            display: grid;
+            grid-template-rows: auto auto;
+            gap: 4rem;
         }
-
-
-        /* La page est invisible par défaut pour permettre le Fade In */
-        body { 
-        opacity: 0;
-        transition: opacity 0.5s ease-in-out;
-    }
-
-/* Classe pour l'apparition (Fade In) */
-        body.fade-in { 
-        opacity: 1; 
-    }
-
-/* Classe pour la disparition (Fade Out) */
-        .fade-out { 
-        opacity: 0 !important; 
-    }
     </style>
 </head>
+<body class="selection:bg-blue-500/30">
 
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        // 1. Entrée en fondu
-        document.body.classList.add("fade-in");
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+    <div class="fixed inset-0 bg-[#050505]/50 z-[-1] pointer-events-none"></div>
 
-        // 2. Sortie en fondu sur les liens internes
-        const links = document.querySelectorAll('nav a, a'); // Cible la nav et les liens de bas de page
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 glass px-6 py-3 rounded-full flex gap-6 text-[9px] font-bold uppercase tracking-widest whitespace-nowrap">
+        <a href="index.html" class="hover:text-white transition text-zinc-400">Accueil</a>
+        <a href="bts-sio.html" class="text-white border-b border-blue-500 pb-1">BTS SIO</a>
+        <a href="cv.html" class="hover:text-white transition text-zinc-400">CV</a>
+        <a href="projets.html" class="hover:text-white transition text-zinc-400">Projets</a>
+        <a href="certifications.html" class="hover:text-white transition text-zinc-400">Certifications</a>
+        <a href="veille.html" class="hover:text-white transition text-zinc-400">Veille</a>
+        <a href="interets.html" class="hover:text-white transition text-zinc-400">Intérêts</a>
+        <a href="contact.html" class="hover:text-white transition text-zinc-400">Contact</a>
+    </nav>
 
-        links.forEach(link => {
-            link.addEventListener("click", e => {
-                // On ne gère que les liens vers tes fichiers .html locaux
-                if (link.hostname === window.location.hostname && link.href.includes('.html')) {
-                    e.preventDefault();
-                    const target = link.href;
+    <main class="max-w-6xl mx-auto px-6 pt-40 relative z-10 pb-20">
+        
+        <header class="mb-12 text-center">
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tighter uppercase drop-shadow-2xl">Le BTS SIO</h1>
+            <p class="text-zinc-400 text-lg max-w-2xl mx-auto leading-relaxed font-light">
+                <strong>Services Informatiques aux Organisations.</strong>
+            </p>
+        </header>
 
-                    document.body.classList.add("fade-out");
+        <section class="flex justify-center mb-16">
+            <a href="assets/fiche_enzo.xlsx" download 
+               class="glass px-8 py-5 rounded-[2rem] border border-blue-500/30 hover:border-blue-500 hover:bg-blue-500/10 transition-all duration-300 group flex items-center gap-6">
+                <div class="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/center" class="h-5 w-5 text-blue-400 group-hover:translate-y-1 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                    </svg>
+                </div>
+                <div class="text-left">
+                    <span class="block text-[10px] font-black uppercase tracking-[0.2em] text-blue-500">Document Officiel E4</span>
+                    <span class="block text-xs font-bold text-white">Fiche de compétences (PDF)</span>
+                </div>
+            </a>
+        </section>
 
-                    setTimeout(() => {
-                        window.location.href = target;
-                    }, 400); // 400ms correspond à la durée du transition CSS
+        <section class="glass p-8 md:p-14 rounded-[3.5rem] mb-12 shadow-2xl">
+            <h2 class="section-title">C'est quoi le BTS SIO?</h2>
+            <div class="space-y-4">
+                <p class="text-zinc-300 text-[13px] leading-relaxed text-justify">
+                    Le BTS SIO (Services Informatiques aux Organisations) est un diplôme d'État de niveau Bac+2 formant les futurs cadres opérationnels des systèmes d'information. Cette formation se distingue par son approche concrète, où l'apprentissage théorique est mis au service de la résolution de problématiques réelles rencontrées en entreprise.
+                </p>
+                <p class="text-zinc-300 text-[13px] leading-relaxed text-justify">
+                    Après un premier semestre de tronc commun permettant de maîtriser les bases du réseau et du développement, le cursus impose une spécialisation entre deux domaines majeurs : <strong>l'infrastructure (SISR)</strong> ou <strong>développement logiciel (SLAM)</strong>.               </p>
+            </div>
+        </section>
+
+        <section class="glass p-10 md:p-16 rounded-[3.5rem] mb-12 shadow-2xl border border-white/5">
+            <div class="grid lg:grid-cols-2 gap-0 items-stretch">
+                
+                <div class="lg:pr-12 lg:border-r lg:border-white/10 flex flex-col">
+                    <div class="mb-16 min-h-[80px]">
+                        <div class="flex items-center gap-4">
+                            <div class="w-1.5 h-10 bg-blue-500 rounded-full shadow-[0_0_15px_rgba(59,130,246,0.5)]"></div>
+                            <h3 class="text-2xl font-black text-white uppercase tracking-tighter">Option SISR</h3>
+                        </div>
+                        <p class="text-blue-500/70 text-[10px] uppercase tracking-widest font-bold mt-2 ml-6">Solutions d'infrastructure, systèmes et réseaux</p>
+                    </div>
+
+                    <div class="grid-layout flex-grow">
+                        <div>
+                            <h4 class="text-blue-400 font-bold uppercase text-[10px] tracking-widest mb-6">Support & Infrastructure</h4>
+                            <ul class="list-accent text-zinc-400 text-[12px] leading-relaxed">
+                                <li><strong>Support technique :</strong> Gestion des incidents, demandes utilisateurs et administration des équipements terminaux.</li>
+                                <li><strong>Architecture Réseaux :</strong> Mise en place de solutions LAN, WAN et VPN sécurisées sur matériels Cisco/HP.</li>
+                                <li><strong>Administration Systèmes :</strong> Gestion d'environnements serveurs Windows et Linux (Debian, Ubuntu).</li>
+                                <li><strong>Cloud & Hybridation :</strong> Pilotage d'infrastructures virtualisées (VMware) et intégration de ressources Cloud.</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4 class="text-blue-400 font-bold uppercase text-[10px] tracking-widest mb-6">Sécurité & Automatisation</h4>
+                            <ul class="list-accent text-zinc-400 text-[12px] leading-relaxed">
+                                <li><strong>Cybersécurité :</strong> Analyse de risques, protection périmétrique (Firewall PFSense) et gestion des accès (ACL).</li>
+                                <li><strong>Supervision :</strong> Mise en place d'outils de monitoring (Zabbix/Nagios) pour la continuité de service.</li>
+                                <li><strong>Scripting :</strong> Automatisation des tâches récurrentes via PowerShell, Bash et Python.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-16 lg:mt-0 lg:pl-12 flex flex-col">
+                    <div class="mb-16 min-h-[80px]">
+                        <div class="flex items-center gap-4">
+                            <div class="w-1.5 h-10 bg-purple-500 rounded-full shadow-[0_0_15px_rgba(139,92,246,0.5)]"></div>
+                            <h3 class="text-2xl font-black text-white uppercase tracking-tighter">Option SLAM</h3>
+                        </div>
+                        <p class="text-purple-500/70 text-[10px] uppercase tracking-widest font-bold mt-2 ml-6">Solutions logicielles et applications métiers</p>
+                    </div>
+
+                    <div class="grid-layout flex-grow">
+                        <div>
+                            <h4 class="text-purple-400 font-bold uppercase text-[10px] tracking-widest mb-6">Conception & Développement</h4>
+                            <ul class="list-accent text-zinc-400 text-[12px] leading-relaxed">
+                                <li><strong>Analyse & Modélisation :</strong> Étude des besoins, rédaction de cahiers des charges et conception UML/Merise.</li>
+                                <li><strong>Programmation Web/Mobile :</strong> Maîtrise des langages PHP, Java, Python et frameworks (Laravel, Symfony, React).</li>
+                                <li><strong>API & Microservices :</strong> Développement et consommation de services web pour l'interopérabilité applicative.</li>
+                                <li><strong>Méthodes Agiles :</strong> Gestion de projet via Scrum et versioning de code intensif avec Git/GitHub.</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4 class="text-purple-400 font-bold uppercase text-[10px] tracking-widest mb-6">Données & Sécurité Applicative</h4>
+                            <ul class="list-accent text-zinc-400 text-[12px] leading-relaxed">
+                                <li><strong>Gestion de BD :</strong> Conception relationnelle, optimisation de requêtes SQL et administration de SGBD (MySQL, PostgreSQL).</li>
+                                <li><strong>Sécurité Logicielle :</strong> Protection contre les injections SQL/XSS et cryptage des données sensibles (RGPD).</li>
+                                <li><strong>Tests & Débogage :</strong> Mise en œuvre de tests unitaires et fonctionnels pour garantir la qualité logicielle.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="glass p-8 md:p-14 rounded-[3.5rem] shadow-2xl">
+            <h2 class="section-title">Perspectives d'Avenir</h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="space-y-4">
+                    <h4 class="text-white font-bold text-xs uppercase tracking-widest">Poursuite d'études</h4>
+                    <ul class="list-accent text-zinc-400 text-[12px] space-y-2">
+                        <li>Licences Professionnelles spécialisées (Cyber, Cloud, DevOps).</li>
+                        <li>Écoles d'Ingénieurs en informatique (Bac+5).</li>
+                        <li>Masters en Management des Systèmes d'Information.</li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="text-white font-bold text-xs uppercase tracking-widest">Métiers Visés</h4>
+                    <ul class="list-accent text-zinc-400 text-[12px] space-y-2">
+                        <li>Administrateur SI, Analyste Cyber ou Consultant Cloud.</li>
+                        <li>Développeur Full-Stack, Analyste Programmeur ou Mobile Lead.</li>
+                        <li>Responsable de Sécurité des Systèmes d'Information (RSSI).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            setTimeout(() => { document.body.classList.add('fade-in'); }, 50);
+
+            const links = document.querySelectorAll('nav a, a');
+            links.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href && href.includes('.html') && !href.startsWith('http')) {
+                    link.addEventListener("click", e => {
+                        e.preventDefault();
+                        document.body.classList.add("fade-out");
+                        setTimeout(() => { window.location.href = href; }, 500);
+                    });
                 }
             });
         });
-    });
-</script>
-
-<body class="selection:bg-blue-500/30 overflow-x-hidden">
-
-    <div class="hero-glow"></div>
-
-    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 glass px-6 py-3 rounded-full flex gap-8 text-[10px] font-bold uppercase tracking-widest">
-        <a href="index.html" class="hover:text-white transition">Accueil
-        <a href="bts-sio.html" class="hover:text-white transition">Le BTS SIO</a>
-        <a href="cv.html" class="hover:text-white transition">CV</a>
-        <a href="projets.html" class="hover:text-white transition"> Projets
-        <a href="certifications.html" class="hover:text-white transition">Certifications</a>
-        <a href="veille.html" class="hover:text-white transition">Veille technologique</a>
-        <a href="interets.html" class="hover:text-white transition">Intérêts</a>
-        <a href="contact.html" class="hover:text-white transition">Contact</a>
-    </nav>
-
-    <section class="min-h-screen flex flex-col items-center justify-center px-6 relative z-10">
-        
-        <div class="glass p-10 md:p-16 rounded-[3rem] max-w-2xl w-full text-left">
-            <div class="mb-10">
-                <h1 class="text-4xl md:text-5xl font-extrabold text-white tracking-tighter mb-6">
-                    Le BTS SIO
-                </h1>
-                <div class="inline-block glass px-5 py-2.5 rounded-xl border border-blue-500/20">
-                    <p class="text-blue-400 font-mono text-xs font-semibold uppercase tracking-[0.2em]">
-                        Option SISR
-                    </p>
-                </div>
-            </div>
-
-            <div class="space-y-6 text-zinc-400 text-lg leading-relaxed">
-                <p>
-                    Le Brevet de Technicien Supérieur en Services Informatiques aux Organisations (SIO) est un diplôme d'État qui forme aux métiers de l'informatique de gestion.
-                </p>
-                <p>
-                    L'option SISR (Solutions d'Infrastructure, Systèmes et Réseaux) se concentre sur l'administration système, la configuration réseau et la cybersécurité. On y apprend à déployer des infrastructures virtuelles, gérer des équipements Cisco et protéger les données.
-                </p>
-            </div>
-
-            <div class="mt-12 pt-8 border-t border-white/5 flex justify-between items-center">
-                <a href="index.html" class="text-xs font-bold text-zinc-600 uppercase tracking-widest hover:text-white transition">
-                    ← Retour
-                </a>
-                <a href="projets.html" class="text-white hover:text-blue-400 font-bold text-xs uppercase tracking-widest flex items-center gap-2 transition">
-                    Projets <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                </a>
-            </div>
-        </div>
-
-    </section>
-
+    </script>
 </body>
 </html>
