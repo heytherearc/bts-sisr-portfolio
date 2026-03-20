@@ -8,117 +8,335 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
         
+        html { overflow-y: scroll; }
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
             background-color: #050505; 
             color: #d4d4d8;
             opacity: 0;
             transition: opacity 0.5s ease-in-out;
+            overflow-x: hidden;
         }
-
         body.fade-in { opacity: 1; }
         .fade-out { opacity: 0 !important; }
 
-        .glass { 
-            background: rgba(255, 255, 255, 0.02); 
-            backdrop-filter: blur(12px); 
-            border: 1px solid rgba(255, 255, 255, 0.08); 
-            transition: all 0.4s ease; 
+        .bg-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: -2;
+            animation: float 20s infinite alternate ease-in-out;
+        }
+        .orb-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: rgba(59, 130, 246, 0.15); }
+        .orb-2 { bottom: -10%; right: -10%; width: 60vw; height: 60vw; background: rgba(139, 92, 246, 0.1); }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(8%, 12%) scale(1.05); }
         }
 
-        .hero-glow { 
-            position: absolute; top: 0; left: 50%; transform: translateX(-50%); 
-            width: 100%; height: 100vh; 
-            background: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.08) 0%, transparent 70%); 
-            pointer-events: none; 
+        .glass { 
+            background: rgba(255, 255, 255, 0.02); 
+            backdrop-filter: blur(16px); 
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+        }
+        
+        .glass:hover { 
+            border-color: rgba(59, 130, 246, 0.4); 
+            background: rgba(255, 255, 255, 0.04); 
+            transform: translateY(-5px);
+        }
+
+        nav a {
+            position: relative;
+            padding-bottom: 4px;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+            color: #71717a;
+        }
+        nav a:hover, nav a.active { color: #ffffff; border-bottom-color: #3b82f6; }
+
+        .category-tag {
+            font-size: 9px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase;
+            padding: 4px 12px; border-radius: 99px; background: rgba(59, 130, 246, 0.1);
+            color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .img-card {
+            width: 100%; height: 240px; object-fit: cover; border-radius: 1.5rem;
+            margin-bottom: 1.5rem; filter: grayscale(100%) brightness(0.6);
+            transition: all 0.5s ease;
+        }
+        .glass:hover .img-card { filter: grayscale(0%) brightness(1); transform: scale(1.01); }
+
+        .timeline-item { position: relative; padding-left: 2rem; border-left: 1px solid rgba(59, 130, 246, 0.3); }
+        .timeline-item::before {
+            content: ''; position: absolute; left: -5px; top: 0;
+            width: 9px; height: 9px; background: #3b82f6; border-radius: 50%;
         }
     </style>
 </head>
+<body class="selection:bg-blue-500/30">
 
-<body class="selection:bg-blue-500/30 overflow-x-hidden">
-
-    <div class="hero-glow"></div>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
 
     <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 glass px-6 py-3 rounded-full flex gap-6 text-[9px] font-bold uppercase tracking-widest whitespace-nowrap">
-        <a href="index.html" class="hover:text-white transition text-zinc-500">Accueil</a>
-        <a href="bts-sio.html" class="hover:text-white transition text-zinc-500">BTS SIO</a>
-        <a href="cv.html" class="hover:text-white transition text-zinc-500">CV</a>
-        <a href="projets.html" class="hover:text-white transition text-zinc-500">Projets</a>
-        <a href="certifications.html" class="hover:text-white transition text-zinc-500">Certifications</a>
-        <a href="veille.html" class="text-white border-b border-blue-500">Veille</a>
-        <a href="interets.html" class="hover:text-white transition text-zinc-500">Intérêts</a>
-        <a href="contact.html" class="hover:text-white transition text-zinc-500">Contact</a>
+        <a href="index.html">Accueil</a>
+        <a href="bts-sio.html">BTS SIO</a>
+        <a href="cv.html">CV</a>
+        <a href="projets.html">Projets</a>
+        <a href="certifications.html">Certifications</a>
+        <a href="veille.html" class="active">Veille</a>
+        <a href="interets.html">Intérêts</a>
+        <a href="contact.html">Contact</a>
     </nav>
 
-    <main class="max-w-6xl mx-auto px-6 pt-32 relative z-10 pb-20">
+    <main class="max-w-6xl mx-auto px-6 pt-40 relative z-10 pb-20">
         
-        <header class="mb-16">
-            <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tighter uppercase text-center">Veille Technologique</h1>
-            <p class="text-center text-zinc-500 text-xs uppercase tracking-[0.3em] font-bold">Thématique : La Cybersécurité Moderne</p>
+        <header class="mb-20 text-center">
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tighter uppercase">Veille Technologique</h1>
+            <p class="text-zinc-500 text-sm uppercase tracking-[0.4em] font-bold">Anatomie et Évolution des Cyberattaques</p>
         </header>
 
-        <article class="glass p-10 rounded-[3rem] mb-8 border-l-4 border-blue-500">
-            <h3 class="text-2xl font-black text-white uppercase mb-6 tracking-tight">01. Qu'est-ce qu'une cyberattaque ?</h3>
-            <p class="text-zinc-500 text-sm leading-relaxed mb-6">
-                Une cyberattaque désigne toute tentative d'atteinte à un système d'information réalisée à des fins malveillantes. Elle vise à compromettre la confidentialité, l'intégrité ou la disponibilité des données. Ces attaques cherchent à paralyser des infrastructures ou à extraire des informations sensibles à des fins d'espionnage ou de sabotage.
-            </p>
-            <div class="flex items-center justify-between border-t border-white/5 pt-6">
-                <span class="text-[9px] font-bold text-zinc-600 uppercase tracking-widest">Référence : Kaspersky Security</span>
-                <a href="https://www.kaspersky.fr/resource-center/definitions/what-is-a-cyber-attack" target="_blank" class="text-[9px] text-blue-400 hover:text-white transition uppercase font-bold tracking-widest underline underline-offset-4">Accéder à la définition</a>
+        <section class="glass p-10 md:p-14 rounded-[3.5rem] mb-12 border-l-4 border-zinc-500">
+            <span class="category-tag mb-6 inline-block !text-zinc-400 !bg-zinc-500/10 !border-zinc-500/20">00. Méthodologie</span>
+            <h3 class="text-3xl font-black text-white uppercase mb-6 tracking-tight">C'est quoi une veille ?</h3>
+            <div class="grid md:grid-cols-2 gap-10">
+                <div class="space-y-4">
+                    <p class="text-zinc-400 text-sm leading-relaxed text-justify">
+                        En informatique, la <strong>veille technologique</strong> est une démarche proactive et continue. Elle consiste à collecter, analyser et trier l'information pour rester à jour sur les innovations, les nouvelles vulnérabilités et les tendances du secteur.
+                    </p>
+                    <p class="text-zinc-400 text-sm leading-relaxed text-justify">
+                        Pour un administrateur systèmes et réseaux (SISR), c'est l'outil indispensable. Anticiper une faille avant qu'elle ne soit exploitée est la première ligne de défense de toute infrastructure. Pour structurer cette démarche, j'utilise un agrégateur de flux RSS comme <strong>Feedly</strong>.
+                    </p>
+                </div>
+                <div class="glass p-6 rounded-2xl bg-white/5 border-white/10 flex flex-col justify-center">
+                    <h4 class="text-white font-bold text-[10px] uppercase tracking-widest mb-4">Les 4 piliers de ma veille :</h4>
+                    <ul class="text-zinc-500 text-[11px] space-y-3">
+                        <li class="flex items-center gap-3"><div class="w-1.5 h-1.5 rounded-full bg-zinc-400"></div><strong>Sourcing :</strong> Sélectionner des sources certifiées (ANSSI, CERT).</li>
+                        <li class="flex items-center gap-3"><div class="w-1.5 h-1.5 rounded-full bg-zinc-400"></div><strong>Collecte :</strong> Automatiser la réception via flux RSS.</li>
+                        <li class="flex items-center gap-3"><div class="w-1.5 h-1.5 rounded-full bg-blue-400"></div><strong>Analyse :</strong> Filtrer et comprendre l'impact technique.</li>
+                        <li class="flex items-center gap-3"><div class="w-1.5 h-1.5 rounded-full bg-blue-400"></div><strong>Action :</strong> Appliquer les correctifs sur l'infrastructure.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <article class="glass p-10 md:p-14 rounded-[3.5rem] mb-12 border-l-4 border-blue-500 overflow-hidden">
+            <div class="grid md:grid-cols-2 gap-10 items-center">
+                <div>
+                    <span class="category-tag mb-6 inline-block">01. Définition</span>
+                    <h3 class="text-3xl font-black text-white uppercase mb-6 tracking-tight">Qu'est-ce qu'une cyberattaque ?</h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed mb-6 text-justify">
+                        Une cyberattaque est une tentative délibérée d'individus ou d'organisations d'exploiter les systèmes informatiques pour voler des données, paralyser des infrastructures ou saboter des opérations. 
+                        Elle repose sur la rupture de la <strong>Triade DIC</strong> : Confidentialité, Intégrité et Disponibilité.
+                    </p>
+                    <div class="flex gap-4">
+                        <div class="text-[10px] font-bold text-zinc-500 border border-zinc-800 px-3 py-1 rounded-lg">CONFIDENTIALITÉ</div>
+                        <div class="text-[10px] font-bold text-zinc-500 border border-zinc-800 px-3 py-1 rounded-lg">INTÉGRITÉ</div>
+                        <div class="text-[10px] font-bold text-zinc-500 border border-zinc-800 px-3 py-1 rounded-lg">DISPONIBILITÉ</div>
+                    </div>
+                </div>
+                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800" alt="Cybersecurity Concept" class="img-card !mb-0">
             </div>
         </article>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-            <article class="glass p-10 rounded-[3rem] border-t-2 border-white/5">
-                <h3 class="text-xl font-black text-white uppercase mb-4 tracking-tight text-red-500">02. La Menace Critique</h3>
-                <p class="text-zinc-500 text-xs leading-relaxed mb-6">
-                    Le Ransomware demeure l'attaque la plus redoutable. En combinant le chiffrement des données et l'extorsion financière, il peut stopper net l'activité d'une organisation mondiale en quelques minutes.
-                </p>
-                <a href="https://www.fortinet.com/resources/cyberglossary/most-dangerous-cyber-attacks" target="_blank" class="text-[9px] text-zinc-400 hover:text-white transition uppercase font-bold tracking-widest">Source : Fortinet Glossary</a>
-            </article>
+        <section class="glass p-10 md:p-14 rounded-[3.5rem] mb-12">
+            <span class="category-tag mb-6 inline-block">02. Histoire</span>
+            <h3 class="text-3xl font-black text-white uppercase mb-10 tracking-tight">L'Évolution des Menaces</h3>
+            <div class="space-y-10">
+                <div class="timeline-item">
+                    <h4 class="text-blue-400 font-bold text-xs uppercase tracking-widest">1970 - 1980 | Les Débuts</h4>
+                    <p class="text-zinc-500 text-xs mt-2 italic">Tests comme "Creeper" ou virus sur disquettes créés par pur défi technique entre chercheurs.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4 class="text-blue-400 font-bold text-xs uppercase tracking-widest">1990 - 2000 | Expansion d'Internet</h4>
+                    <p class="text-zinc-500 text-xs mt-2 italic">Apparition des vers mondiaux (Morris Worm, I Love You) infectant des millions de PC pour prouver des failles de masse.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4 class="text-blue-400 font-bold text-xs uppercase tracking-widest">2010 - 2026 | Professionnalisation & IA</h4>
+                    <p class="text-zinc-500 text-xs mt-2 italic">Passage du sabotage étatique (Stuxnet) à l'industrialisation du crime avec le Ransomware-as-a-Service et l'IA offensive.</p>
+                </div>
+            </div>
+        </section>
 
-            <article class="glass p-10 rounded-[3rem] border-t-2 border-white/5">
-                <h3 class="text-xl font-black text-white uppercase mb-4 tracking-tight text-purple-400">03. Évolution des Menaces</h3>
-                <p class="text-zinc-500 text-xs leading-relaxed mb-6">
-                    L'histoire de la cybercriminalité montre une transition majeure : du sabotage amateur des années 2000 à l'industrialisation actuelle via le Ransomware-as-a-Service (RaaS) et l'IA.
-                </p>
-                <a href="https://www.crowdstrike.com/cybersecurity-101/cyberattacks/evolution-of-cyber-attacks/" target="_blank" class="text-[9px] text-zinc-400 hover:text-white transition uppercase font-bold tracking-widest">Source : CrowdStrike</a>
-            </article>
-        </div>
+        <section class="mb-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <article class="glass p-10 rounded-[3rem] border-t-2 border-zinc-800 flex flex-col">
+                    <span class="category-tag mb-6 inline-block w-fit">03. Mécanismes</span>
+                    <h4 class="text-2xl font-black text-white uppercase mb-6 tracking-tight">Comment attaquent-ils ?</h4>
+                    <img src="https://images.unsplash.com/photo-1624969862644-791f3dc98927?auto=format&fit=crop&q=80&w=800" alt="Hacking Concept" class="img-card">
+                    <div class="space-y-4 flex-grow">
+                        <div>
+                            <h5 class="text-blue-400 font-bold text-sm uppercase">1. Ingénierie Sociale & Phishing</h5>
+                            <p class="text-zinc-400 text-xs leading-relaxed text-justify mt-1">L'exploitation de la faille humaine reste le vecteur n°1. Les attaquants manipulent les employés pour obtenir des identifiants ou faire exécuter des charges utiles.</p>
+                        </div>
+                        <div>
+                            <h5 class="text-blue-400 font-bold text-sm uppercase">2. Exploitation de Vulnérabilités (CVE)</h5>
+                            <p class="text-zinc-400 text-xs leading-relaxed text-justify mt-1">L'utilisation de failles logicielles non patchées ou inconnues (Zero-Day) permet de s'infiltrer discrètement dans les infrastructures des entreprises.</p>
+                        </div>
+                        <div>
+                            <h5 class="text-blue-400 font-bold text-sm uppercase">3. Force Brute & Credential Stuffing</h5>
+                            <p class="text-zinc-400 text-xs leading-relaxed text-justify mt-1">Des robots testent massivement des millions de mots de passe volés sur différentes plateformes pour forcer l'accès aux comptes légitimes.</p>
+                        </div>
+                    </div>
+                </article>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <article class="glass p-10 rounded-[3rem] border-t-2 border-white/5">
-                <h3 class="text-xl font-black text-white uppercase mb-4 tracking-tight text-green-400">04. Méthodes de Prévention</h3>
-                <p class="text-zinc-500 text-xs leading-relaxed mb-6">
-                    La défense repose sur le modèle "Zero Trust" : authentification multi-facteurs (MFA), segmentation réseau, chiffrement et sensibilisation continue des utilisateurs.
-                </p>
-                <a href="https://www.ciscopress.com/articles/article.asp?p=3157508" target="_blank" class="text-[9px] text-zinc-400 hover:text-white transition uppercase font-bold tracking-widest">Source : Cisco Press</a>
-            </article>
+                <article class="glass p-10 rounded-[3rem] border-t-2 border-zinc-800 flex flex-col">
+                    <span class="category-tag mb-6 inline-block w-fit">04. Mobiles</span>
+                    <h4 class="text-2xl font-black text-white uppercase mb-6 tracking-tight">Pourquoi attaquent-ils ?</h4>
+                    <img src="https://images.unsplash.com/photo-1614064641913-a520faff3ddf?auto=format&fit=crop&q=80&w=800" alt="Financial Hacker" class="img-card">
+                    <div class="space-y-4 flex-grow">
+                        <div>
+                            <h5 class="text-green-400 font-bold text-sm uppercase">1. Cybercriminalité Financière (90%)</h5>
+                            <p class="text-zinc-400 text-xs leading-relaxed text-justify mt-1">L'objectif principal est le profit. Extorsion via ransomware, fraude bancaire, ou revente de données personnelles et industrielles sur le Dark Web.</p>
+                        </div>
+                        <div>
+                            <h5 class="text-purple-400 font-bold text-sm uppercase">2. Espionnage Industriel & Étatique</h5>
+                            <p class="text-zinc-400 text-xs leading-relaxed text-justify mt-1">Des groupes soutenus par des États (APT) cherchent à voler la propriété intellectuelle, des brevets ou à surveiller des gouvernements rivaux.</p>
+                        </div>
+                        <div>
+                            <h5 class="text-red-400 font-bold text-sm uppercase">3. Sabotage & Hacktivisme</h5>
+                            <p class="text-zinc-400 text-xs leading-relaxed text-justify mt-1">Paralyser des infrastructures critiques (hôpitaux, réseaux électriques) pour créer le chaos, ou attaquer des entités pour des raisons idéologiques ou politiques.</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
 
-            <article class="glass p-10 rounded-[3rem] border-t-2 border-white/5">
-                <h3 class="text-xl font-black text-white uppercase mb-4 tracking-tight text-yellow-500">05. Origines des Failles</h3>
-                <p class="text-zinc-500 text-xs leading-relaxed mb-6">
-                    L'erreur humaine reste le vecteur principal (phishing). Les vulnérabilités logicielles non patchées et les configurations Cloud erronées complètent les causes majeures.
-                </p>
-                <a href="https://www.ibm.com/topics/cyber-attack-causes" target="_blank" class="text-[9px] text-zinc-400 hover:text-white transition uppercase font-bold tracking-widest">Source : IBM Research</a>
-            </article>
-        </div>
+        <section class="mb-12">
+            <div class="flex items-center gap-4 mb-10">
+                <span class="category-tag">05. Typologie</span>
+                <h3 class="text-3xl font-black text-white uppercase tracking-tight">Panorama des Menaces</h3>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="glass p-8 rounded-[2rem] hover:border-red-500/40 transition-colors">
+                    <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=800" alt="Ransomware Code" class="img-card h-[160px]">
+                    <h5 class="text-white font-black text-lg uppercase mb-3">Ransomware</h5>
+                    <p class="text-zinc-400 text-xs leading-relaxed">Chiffrement des données accompagné d'une demande de rançon. Les variantes modernes incluent la "double extorsion" (menace de fuite publique).</p>
+                </div>
+
+                <div class="glass p-8 rounded-[2rem] hover:border-orange-500/40 transition-colors">
+                    <img src="https://images.unsplash.com/photo-1551808525-51a94da548ce?auto=format&fit=crop&q=80&w=800" alt="DDoS Attack" class="img-card h-[160px]">
+                    <h5 class="text-white font-black text-lg uppercase mb-3">DDoS</h5>
+                    <p class="text-zinc-400 text-xs leading-relaxed">Saturation d'un serveur ou d'un réseau par une inondation de trafic provenant de machines zombies (botnet), rendant le service totalement indisponible.</p>
+                </div>
+
+                <div class="glass p-8 rounded-[2rem] hover:border-yellow-500/40 transition-colors">
+                    <img src="https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?auto=format&fit=crop&q=80&w=800" alt="Phishing Mail" class="img-card h-[160px]">
+                    <h5 class="text-white font-black text-lg uppercase mb-3">Phishing & Spear-Phishing</h5>
+                    <p class="text-zinc-400 text-xs leading-relaxed">Usurpation d'identité via email pour tromper la cible. Le Spear-Phishing est une variante hautement personnalisée visant des dirigeants spécifiques.</p>
+                </div>
+
+                <div class="glass p-8 rounded-[2rem] hover:border-blue-500/40 transition-colors">
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800" alt="Supply Chain" class="img-card h-[160px]">
+                    <h5 class="text-white font-black text-lg uppercase mb-3">Supply Chain Attack</h5>
+                    <p class="text-zinc-400 text-xs leading-relaxed">Compromission du système via un fournisseur ou un logiciel tiers de confiance. Cela permet de toucher des milliers d'organisations en une seule frappe (ex: affaire SolarWinds).</p>
+                </div>
+
+                <div class="glass p-8 rounded-[2rem] hover:border-purple-500/40 transition-colors">
+                    <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&q=80&w=800" alt="Malware" class="img-card h-[160px]">
+                    <h5 class="text-white font-black text-lg uppercase mb-3">Malwares & Chevaux de Troie</h5>
+                    <p class="text-zinc-400 text-xs leading-relaxed">Logiciels malveillants dissimulés dans des programmes légitimes. Ils ouvrent des "backdoors" (portes dérobées) permettant aux pirates de contrôler la machine à distance.</p>
+                </div>
+
+                <div class="glass p-8 rounded-[2rem] hover:border-green-500/40 transition-colors">
+                    <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&q=80&w=800" alt="Network Intercept" class="img-card h-[160px]">
+                    <h5 class="text-white font-black text-lg uppercase mb-3">Man-in-the-Middle (MitM)</h5>
+                    <p class="text-zinc-400 text-xs leading-relaxed">L'attaquant s'intercepte secrètement entre deux parties communicantes (ex: via un Wi-Fi public compromis) pour écouter ou altérer le trafic et voler des données.</p>
+                </div>
+            </div>
+        </section>
+
+        <article class="glass p-10 md:p-14 rounded-[3.5rem] mb-20 border-l-4 border-green-500">
+            <span class="category-tag mb-6 inline-block !text-green-400 !bg-green-500/10 !border-green-500/20">06. Protection</span>
+            <h3 class="text-3xl font-black text-white uppercase mb-10 tracking-tight">Mesures de Prévention & Résilience</h3>
+            
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&q=80&w=800" alt="Server Protection" class="img-card !mb-0 h-[400px]">
+                
+                <div class="space-y-8">
+                    <p class="text-zinc-400 text-sm leading-relaxed mb-6">
+                        La cybersécurité moderne ne s'appuie plus sur un simple antivirus, mais sur la <strong>Défense en Profondeur</strong> et le modèle <strong>Zero Trust</strong>.
+                    </p>
+
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="w-2 h-2 rounded-full bg-green-400 mt-2"></div>
+                            <div>
+                                <h5 class="text-white font-bold text-xs uppercase tracking-widest">MFA & Gestion des Accès</h5>
+                                <p class="text-zinc-500 text-[11px] mt-1">L'Authentification Multi-Facteurs empêche 99% des attaques liées au vol de mots de passe.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="w-2 h-2 rounded-full bg-green-400 mt-2"></div>
+                            <div>
+                                <h5 class="text-white font-bold text-xs uppercase tracking-widest">Patch Management</h5>
+                                <p class="text-zinc-500 text-[11px] mt-1">L'application rigoureuse et rapide des mises à jour pour combler les failles de sécurité connues (CVE).</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="w-2 h-2 rounded-full bg-green-400 mt-2"></div>
+                            <div>
+                                <h5 class="text-white font-bold text-xs uppercase tracking-widest">Segmentation Réseau</h5>
+                                <p class="text-zinc-500 text-[11px] mt-1">Diviser le réseau en sous-réseaux isolés (VLAN) pour limiter la propagation (mouvements latéraux) en cas d'intrusion.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="w-2 h-2 rounded-full bg-green-400 mt-2"></div>
+                            <div>
+                                <h5 class="text-white font-bold text-xs uppercase tracking-widest">Solutions EDR/XDR</h5>
+                                <p class="text-zinc-500 text-[11px] mt-1">Analyse comportementale en temps réel pour détecter et isoler instantanément les menaces sophistiquées sur les terminaux.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="w-2 h-2 rounded-full bg-green-400 mt-2"></div>
+                            <div>
+                                <h5 class="text-white font-bold text-xs uppercase tracking-widest">Règle de Sauvegarde 3-2-1</h5>
+                                <p class="text-zinc-500 text-[11px] mt-1">Garder 3 copies des données, sur 2 supports différents, dont 1 déconnecté du réseau (hors-ligne) pour contrer les ransomwares.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <section class="glass p-12 rounded-[4rem] border-zinc-800">
+            <h2 class="text-white font-black text-2xl uppercase tracking-tighter mb-8 border-b border-white/5 pb-4">Sources de la Veille</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-12">
+                <a href="https://www.microsoft.com/fr-fr/security/business/security-101/what-is-a-cyberattack" target="_blank" class="text-xs text-blue-400 hover:text-white transition underline">Microsoft : Définition d'une cyberattaque</a>
+                <a href="https://guardia.school/boite-a-outils/lhistoire-de-la-cybersecurite.html" target="_blank" class="text-xs text-blue-400 hover:text-white transition underline">Guardia School : Histoire de la Cybersécurité</a>
+                <a href="https://www.nationwide.com/lc/resources/cyber-resource-center/articles/how-cybercriminals-have-evolved" target="_blank" class="text-xs text-blue-400 hover:text-white transition underline">Nationwide : Évolution criminelle</a>
+                <a href="https://www.nibusinessinfo.co.uk/content/reasons-behind-cyber-attacks" target="_blank" class="text-xs text-blue-400 hover:text-white transition underline">NI Business Info : Raisons des attaques</a>
+                <a href="https://www.consilium.europa.eu/fr/policies/top-cyber-threats/" target="_blank" class="text-xs text-blue-400 hover:text-white transition underline">Conseil de l'UE : Panorama des menaces</a>
+                <a href="https://www.fortinet.com/fr/resources/cyberglossary/most-notorious-attacks-in-the-history-of-cyber-warfare" target="_blank" class="text-xs text-blue-400 hover:text-white transition underline">Fortinet : Attaques notoires</a>
+                <a href="https://blog.ipgarde.com/5-types-de-cyberattaques-qui-touchent-le-plus-les-tpe-pme-en-2024" target="_blank" class="text-xs text-blue-400 hover:text-white transition underline">IPgarde : Menaces TPE/PME 2024</a>
+                <a href="https://www.info.gouv.fr/actualite/attention-aux-arnaques-en-ligne" target="_blank" class="text-xs text-blue-400 hover:text-white transition underline">Info Gouv : Arnaques en ligne</a>
+            </div>
+        </section>
 
     </main>
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             setTimeout(() => { document.body.classList.add('fade-in'); }, 50);
-            const links = document.querySelectorAll('nav a, a');
+            const links = document.querySelectorAll('nav a');
             links.forEach(link => {
-                const href = link.getAttribute('href');
-                if (href && href.includes('.html') && !href.startsWith('http')) {
-                    link.addEventListener("click", e => {
+                link.addEventListener("click", e => {
+                    const href = link.getAttribute('href');
+                    if (href && href.includes('.html')) {
                         e.preventDefault();
                         document.body.classList.add("fade-out");
                         setTimeout(() => { window.location.href = href; }, 500);
-                    });
-                }
+                    }
+                });
             });
         });
     </script>
