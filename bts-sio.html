@@ -8,6 +8,9 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
         
+        /* Layout Fixes */
+        html { overflow-y: scroll; } 
+
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
             background-color: #050505; 
@@ -20,6 +23,7 @@
         body.fade-in { opacity: 1; }
         .fade-out { opacity: 0 !important; }
 
+        /* Animated Background Orbs */
         .bg-orb {
             position: fixed;
             border-radius: 50%;
@@ -44,6 +48,21 @@
             transition: all 0.4s ease; 
         }
 
+        /* Navbar Fix */
+        nav a {
+            position: relative;
+            padding-bottom: 4px;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+            color: #71717a;
+        }
+
+        nav a:hover, nav a.active {
+            color: #ffffff;
+            border-bottom-color: #3b82f6;
+        }
+
+        /* Typography & Lists */
         h2.section-title {
             font-size: 1.4rem;
             font-weight: 900;
@@ -56,13 +75,14 @@
             margin-top: 3.5rem;
         }
 
-        h2.section-title:first-child { margin-top: 0; }
-
         .list-accent li {
             position: relative;
             padding-left: 1.5rem;
             margin-bottom: 0.8rem;
+            transition: all 0.3s ease;
         }
+
+        .list-accent li:hover { transform: translateX(5px); color: #fff; }
 
         .list-accent li::before {
             content: "→";
@@ -77,6 +97,21 @@
             grid-template-rows: auto auto;
             gap: 4rem;
         }
+
+        /* Shimmer Button */
+        .btn-shine {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-shine::after {
+            content: "";
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            transition: 0.5s;
+        }
+        .btn-shine:hover::after { left: 100%; }
     </style>
 </head>
 <body class="selection:bg-blue-500/30">
@@ -87,14 +122,14 @@
     <div class="fixed inset-0 bg-[#050505]/50 z-[-1] pointer-events-none"></div>
 
     <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 glass px-6 py-3 rounded-full flex gap-6 text-[9px] font-bold uppercase tracking-widest whitespace-nowrap">
-        <a href="index.html" class="hover:text-white transition text-zinc-400">Accueil</a>
-        <a href="bts-sio.html" class="text-white border-b border-blue-500 pb-1">BTS SIO</a>
-        <a href="cv.html" class="hover:text-white transition text-zinc-400">CV</a>
-        <a href="projets.html" class="hover:text-white transition text-zinc-400">Projets</a>
-        <a href="certifications.html" class="hover:text-white transition text-zinc-400">Certifications</a>
-        <a href="veille.html" class="hover:text-white transition text-zinc-400">Veille</a>
-        <a href="interets.html" class="hover:text-white transition text-zinc-400">Intérêts</a>
-        <a href="contact.html" class="hover:text-white transition text-zinc-400">Contact</a>
+        <a href="index.html">Accueil</a>
+        <a href="bts-sio.html" class="active">BTS SIO</a>
+        <a href="cv.html">CV</a>
+        <a href="projets.html">Projets</a>
+        <a href="certifications.html">Certifications</a>
+        <a href="veille.html">Veille</a>
+        <a href="interets.html">Intérêts</a>
+        <a href="contact.html">Contact</a>
     </nav>
 
     <main class="max-w-6xl mx-auto px-6 pt-40 relative z-10 pb-20">
@@ -108,7 +143,7 @@
 
         <section class="flex justify-center mb-16">
             <a href="assets/fiche_enzo.xlsx" download 
-               class="glass px-8 py-5 rounded-[2rem] border border-blue-500/30 hover:border-blue-500 hover:bg-blue-500/10 transition-all duration-300 group flex items-center gap-6">
+               class="glass btn-shine px-8 py-5 rounded-[2rem] border border-blue-500/30 hover:border-blue-500 hover:bg-blue-500/10 transition-all duration-300 group flex items-center gap-6 shadow-[0_0_20px_rgba(59,130,246,0.1)]">
                 <div class="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center">
                     <svg xmlns="http://www.w3.org/2000/center" class="h-5 w-5 text-blue-400 group-hover:translate-y-1 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -116,7 +151,7 @@
                 </div>
                 <div class="text-left">
                     <span class="block text-[10px] font-black uppercase tracking-[0.2em] text-blue-500">Document Officiel E4</span>
-                    <span class="block text-xs font-bold text-white">Fiche de compétences (PDF)</span>
+                    <span class="block text-xs font-bold text-white">Fiche de compétences (XLSX)</span>
                 </div>
             </a>
         </section>
@@ -189,7 +224,7 @@
                         <div>
                             <h4 class="text-purple-400 font-bold uppercase text-[10px] tracking-widest mb-6">Données & Sécurité Applicative</h4>
                             <ul class="list-accent text-zinc-400 text-[12px] leading-relaxed">
-                                <li><strong>Gestion de BD :</strong> Conception relationnelle, optimisation de requêtes SQL et administration de SGBD (MySQL, PostgreSQL).</li>
+                                <li><strong>Gestion de Base de Données :</strong> Conception relationnelle, optimisation de requêtes SQL et administration de SGBD (MySQL, PostgreSQL).</li>
                                 <li><strong>Sécurité Logicielle :</strong> Protection contre les injections SQL/XSS et cryptage des données sensibles (RGPD).</li>
                                 <li><strong>Tests & Débogage :</strong> Mise en œuvre de tests unitaires et fonctionnels pour garantir la qualité logicielle.</li>
                             </ul>
@@ -228,10 +263,10 @@
         document.addEventListener("DOMContentLoaded", () => {
             setTimeout(() => { document.body.classList.add('fade-in'); }, 50);
 
-            const links = document.querySelectorAll('nav a, a');
+            const links = document.querySelectorAll('nav a');
             links.forEach(link => {
                 const href = link.getAttribute('href');
-                if (href && href.includes('.html') && !href.startsWith('http')) {
+                if (href && href.includes('.html')) {
                     link.addEventListener("click", e => {
                         e.preventDefault();
                         document.body.classList.add("fade-out");
